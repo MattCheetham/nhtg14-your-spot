@@ -70,6 +70,26 @@
     return cell;
 }
 
+#pragma mark - Header view
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"Looking for beacons...";
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *headerView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"Header"];
+    
+    UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [headerView addSubview:indicatorView];
+    
+    indicatorView.frame = CGRectMake(205, 28, indicatorView.frame.size.width, indicatorView.frame.size.height);
+    [indicatorView startAnimating];
+    
+    return headerView;
+}
+
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
