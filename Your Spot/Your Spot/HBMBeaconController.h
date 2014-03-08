@@ -15,4 +15,14 @@
 
 + (HBMBeaconController *)sharedController;
 
+/**
+ Enables monitoring of any added children with a ranging mode. Notifications will be sent when a child is going out of range and has gone out of range
+ **/
+- (void)startMonitoringChildren;
+
+/**
+ Disables monitoring of any children in the list of added children
+ **/
+- (void)stopMonitoringChildren;
+
 @end
