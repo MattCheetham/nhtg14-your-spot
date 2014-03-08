@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		493A5BFB18CB49CB00C66094 /* HBMBeaconController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */; };
 		49FBE98818CB2BCA00D7C3B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FBE98718CB2BCA00D7C3B4 /* Foundation.framework */; };
 		49FBE98A18CB2BCA00D7C3B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FBE98918CB2BCA00D7C3B4 /* CoreGraphics.framework */; };
 		49FBE98C18CB2BCA00D7C3B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FBE98B18CB2BCA00D7C3B4 /* UIKit.framework */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		493A5BF918CB49CB00C66094 /* HBMBeaconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMBeaconController.h; sourceTree = "<group>"; };
+		493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMBeaconController.m; sourceTree = "<group>"; };
 		49FBE98418CB2BCA00D7C3B4 /* Your Spot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Your Spot.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49FBE98718CB2BCA00D7C3B4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		49FBE98918CB2BCA00D7C3B4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -85,6 +88,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		493A5BF818CB49B600C66094 /* Beacons */ = {
+			isa = PBXGroup;
+			children = (
+				493A5BF918CB49CB00C66094 /* HBMBeaconController.h */,
+				493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */,
+			);
+			name = Beacons;
+			sourceTree = "<group>";
+		};
 		49FBE97B18CB2BCA00D7C3B4 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +133,7 @@
 			children = (
 				49FBE99618CB2BCA00D7C3B4 /* HBMAppDelegate.h */,
 				49FBE99718CB2BCA00D7C3B4 /* HBMAppDelegate.m */,
+				493A5BF818CB49B600C66094 /* Beacons */,
 				49FBE99918CB2BCA00D7C3B4 /* Images.xcassets */,
 				49FBE9FB18CB34EE00D7C3B4 /* Conveniences */,
 				49FBE98E18CB2BCA00D7C3B4 /* Supporting Files */,
@@ -269,6 +282,7 @@
 				49FBE99818CB2BCA00D7C3B4 /* HBMAppDelegate.m in Sources */,
 				49FBE99418CB2BCA00D7C3B4 /* main.m in Sources */,
 				49FBE9F718CB34B000D7C3B4 /* HBMConveniencesController.m in Sources */,
+				493A5BFB18CB49CB00C66094 /* HBMBeaconController.m in Sources */,
 				49FBE9FA18CB34E600D7C3B4 /* HBMConvenience.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
