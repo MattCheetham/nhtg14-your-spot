@@ -65,7 +65,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     CLBeacon *nearbyBeacon = self.beaconController.nearbyBeacons[indexPath.row];
-    cell.textLabel.text = nearbyBeacon.proximityUUID.UUIDString;
+    cell.textLabel.text = [self.beaconController commonIdentifierForBeacon:nearbyBeacon];
+    cell.detailTextLabel.text = nearbyBeacon.proximityUUID.UUIDString;
     
     return cell;
 }
