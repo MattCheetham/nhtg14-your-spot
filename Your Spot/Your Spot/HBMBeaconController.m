@@ -63,7 +63,6 @@ static HBMBeaconController *sharedController = nil;
 {
     for (HBMChild *child in self.monitoredChildren){
         
-        [self.locationManager startMonitoringForRegion:child.beaconRegion];
         [self.locationManager startRangingBeaconsInRegion:child.beaconRegion];
         
     }
