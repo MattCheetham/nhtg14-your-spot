@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49141EBA18CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49141EB918CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m */; };
 		493A5BFB18CB49CB00C66094 /* HBMBeaconController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */; };
 		493A5BFE18CB4C8300C66094 /* HBMChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5BFD18CB4C8300C66094 /* HBMChild.m */; };
 		493A5C0218CB5BB400C66094 /* HBMNearbyBeaconTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5C0118CB5BB400C66094 /* HBMNearbyBeaconTableViewController.m */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49141EB818CB7B3E000C6BC3 /* HBMAvailableBeaconCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMAvailableBeaconCell.h; sourceTree = "<group>"; };
+		49141EB918CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMAvailableBeaconCell.m; sourceTree = "<group>"; };
 		493A5BF918CB49CB00C66094 /* HBMBeaconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMBeaconController.h; sourceTree = "<group>"; };
 		493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMBeaconController.m; sourceTree = "<group>"; };
 		493A5BFC18CB4C8300C66094 /* HBMChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMChild.h; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */,
 				493A5C0018CB5BB400C66094 /* HBMNearbyBeaconTableViewController.h */,
 				493A5C0118CB5BB400C66094 /* HBMNearbyBeaconTableViewController.m */,
+				49141EB818CB7B3E000C6BC3 /* HBMAvailableBeaconCell.h */,
+				49141EB918CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m */,
 			);
 			name = Beacons;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				493A5C0218CB5BB400C66094 /* HBMNearbyBeaconTableViewController.m in Sources */,
 				49FBE99818CB2BCA00D7C3B4 /* HBMAppDelegate.m in Sources */,
 				49FBE99418CB2BCA00D7C3B4 /* main.m in Sources */,
+				49141EBA18CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m in Sources */,
 				493A5BFE18CB4C8300C66094 /* HBMChild.m in Sources */,
 				49FBE9F718CB34B000D7C3B4 /* HBMConveniencesController.m in Sources */,
 				493A5BFB18CB49CB00C66094 /* HBMBeaconController.m in Sources */,

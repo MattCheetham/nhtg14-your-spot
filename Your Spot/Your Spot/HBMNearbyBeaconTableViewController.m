@@ -8,6 +8,7 @@
 
 #import "HBMNearbyBeaconTableViewController.h"
 #import "HBMBeaconController.h"
+#import "HBMAvailableBeaconCell.h"
 
 @interface HBMNearbyBeaconTableViewController ()
 
@@ -31,7 +32,7 @@
         
         [self.beaconController addObserver:self forKeyPath:@"nearbyBeacons" options:kNilOptions context:nil];
         
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+        [self.tableView registerClass:[HBMAvailableBeaconCell class] forCellReuseIdentifier:@"Cell"];
         
     }
     return self;
@@ -62,7 +63,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    HBMAvailableBeaconCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     CLBeacon *nearbyBeacon = self.beaconController.nearbyBeacons[indexPath.row];
     cell.textLabel.text = [self.beaconController commonIdentifierForBeacon:nearbyBeacon];
