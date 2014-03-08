@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) NSMutableArray *conveniences;
 
-typedef void (^HBMNearestConvenienceCompletion)(HBMConvenience *convenience, NSError *error);
+typedef void (^HBMNearestConvenienceCompletion)(NSArray *conveniences, NSError *error);
 
 + (HBMConveniencesController *)sharedController;
 
@@ -23,6 +23,6 @@ typedef void (^HBMNearestConvenienceCompletion)(HBMConvenience *convenience, NSE
  @param location The users current location
  @param completion the HBMNearestConvenienceCompletion block to call when we have found a location or failed to find any nearby conveniences
  **/
-- (void)nearestConvenienceWithLocation:(CLLocation *)location completion:(HBMNearestConvenienceCompletion)completion;
+- (void)nearestConveniencesWithLocation:(CLLocation *)location completion:(HBMNearestConvenienceCompletion)completion;
 
 @end
