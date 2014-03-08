@@ -56,4 +56,9 @@ static HBMConveniencesController *sharedController = nil;
     
 }
 
+- (void)nearestConvenienceWithLocation:(CLLocation *)location completion:(HBMNearestConvenienceCompletion)completion
+{
+    
+}
+
 @end
