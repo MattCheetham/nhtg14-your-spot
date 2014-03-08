@@ -21,7 +21,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     HBMNearbyBeaconTableViewController *addBeacon = [HBMNearbyBeaconTableViewController new];
-    self.window.rootViewController = addBeacon;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addBeacon];
+    self.window.rootViewController = navController;
     
     [self.window makeKeyAndVisible];
     
