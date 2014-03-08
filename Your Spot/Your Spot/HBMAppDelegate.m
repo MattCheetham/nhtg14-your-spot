@@ -8,6 +8,7 @@
 
 #import "HBMAppDelegate.h"
 #import "HBMConveniencesController.h"
+#import "HBMNearbyPeopleViewController.h"
 
 @implementation HBMAppDelegate
 
@@ -16,6 +17,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    self.window.rootViewController = [HBMNearbyPeopleViewController new];
     [self.window makeKeyAndVisible];
     [HBMConveniencesController sharedController];
     return YES;
