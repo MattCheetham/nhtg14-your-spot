@@ -26,4 +26,10 @@
  **/
 - (void)stopMonitoringChildren;
 
+/**
+ Checks the returned beacon against the types that were set to be monitored. 
+ @param beacon The beacon you wish to look up the name for
+ @return NSString The name of the beacon (E.G. Estimote)
+ **/
+- (NSString *)commonIdentifierForBeacon:(CLBeacon *)beacon;
 @end

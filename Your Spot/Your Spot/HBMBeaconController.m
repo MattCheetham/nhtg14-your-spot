@@ -140,7 +140,23 @@ static HBMBeaconController *sharedController = nil;
 
 }
 
-#pragma mark - Proximity convneience methods
+#pragma mark - Monitoring convneience methods
+
+- (NSString *)commonIdentifierForBeacon:(CLBeacon *)beacon
+{
+    for (CLBeaconRegion *existingBeacon in self.locationManager.monitoredRegions){
+        
+        if(existingBeacon.proximityUUID == beacon.proximityUUID){
+            
+            return existingBeacon.identifier;
+            break;
+            
+        }
+        
+    }
+
+    return @"Unknown";
+}
 
 - (NSString *)stringFromProximity:(CLProximity)proximity
 {
