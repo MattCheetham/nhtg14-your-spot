@@ -7,10 +7,9 @@
 //
 
 #import "HBMConveniencesController.h"
+#import "HBMConvenience.h"
 
 @interface HBMConveniencesController ()
-
-@property (nonatomic, strong) NSMutableArray *conveniences;
 
 @end
 
@@ -35,8 +34,26 @@ static HBMConveniencesController *sharedController = nil;
         
         self.conveniences = [NSMutableArray array];
         
+        [self refreshConveniences];
+        
     }
     return self;
+}
+
+- (void)refreshConveniences
+{
+    NSString *conveniencePath = [[NSBundle mainBundle] pathForResource:@"conveniences" ofType:@"json"];
+    NSData *convenienceData = [NSData dataWithContentsOfFile:conveniencePath];
+    NSArray *conveniencesArray = [NSJSONSerialization JSONObjectWithData:convenienceData options:NSJSONReadingAllowFragments error:nil];
+    
+    for (NSDictionary *convenienceInformation in conveniencesArray){
+        
+        HBMConvenience *convenience = [[HBMConvenience alloc] initWithDictionary:convenienceInformation];
+        
+        [self.conveniences addObject:convenience];
+        
+    }
+    
 }
 
 @end

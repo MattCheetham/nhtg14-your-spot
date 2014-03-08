@@ -10,4 +10,8 @@
 
 @interface HBMConveniencesController : NSObject
 
+@property (nonatomic, strong) NSMutableArray *conveniences;
+
++ (HBMConveniencesController *)sharedController;
+
 @end
