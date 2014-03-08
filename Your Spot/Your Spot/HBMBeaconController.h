@@ -10,4 +10,6 @@
 
 @interface HBMBeaconController : NSObject
 
++ (HBMBeaconController *)sharedController;
+
 @end

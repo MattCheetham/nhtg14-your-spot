@@ -10,4 +10,26 @@
 
 @implementation HBMBeaconController
 
+static HBMBeaconController *sharedController = nil;
+
++ (HBMBeaconController *)sharedController
+{
+    @synchronized(self) {
+        if (sharedController == nil) {
+            sharedController = [[self alloc] init];
+        }
+    }
+    return sharedController;
+}
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        
+        
+    }
+    return self;
+}
+
 @end
