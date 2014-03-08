@@ -10,4 +10,10 @@
 
 @interface HBMConvenience : NSObject
 
+@property (nonatomic, strong) NSString *convenienceName;
+@property (nonatomic, strong) NSString *convenienceAddress;
+@property (nonatomic, strong) CLLoc
+
+- (id)initWithDictionary:(NSDictionary *)dictionary;
+
 @end

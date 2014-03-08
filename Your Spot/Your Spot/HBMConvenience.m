@@ -10,4 +10,16 @@
 
 @implementation HBMConvenience
 
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
+    self = [super init];
+    if (self) {
+        
+        self.convenienceName = dictionary[@"Sub_Building_Name"];
+        self.convenienceAddress = dictionary[@"FULL_ADDRESS"];
+        
+    }
+    return self;
+}
+
 @end
