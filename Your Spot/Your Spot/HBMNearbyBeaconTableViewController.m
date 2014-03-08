@@ -79,7 +79,7 @@
     
     CLBeacon *nearbyBeacon = self.beaconController.nearbyBeacons[indexPath.row];
     cell.textLabel.text = [self.beaconController commonIdentifierForBeacon:nearbyBeacon];
-    cell.detailTextLabel.text = nearbyBeacon.proximityUUID.UUIDString;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@", nearbyBeacon.major, nearbyBeacon.minor];
     
     return cell;
 }
