@@ -41,11 +41,16 @@ static HBMBeaconController *sharedController = nil;
         self.monitoredFriends = [NSMutableArray array];
         self.nearbyBeacons = [NSArray array];
         self.monitoredRegions = [NSMutableArray array];
-        
-        [self.monitoredChildren addObject:[[HBMChild alloc] init]];
-                
+                        
     }
     return self;
+}
+
+#pragma mark - Add/Remove monitored people
+
+- (void)addMonitoredChild:(HBMChild *)child
+{
+    [self.monitoredChildren addObject:child];
 }
 
 #pragma mark - Handle start/stop of monitoring

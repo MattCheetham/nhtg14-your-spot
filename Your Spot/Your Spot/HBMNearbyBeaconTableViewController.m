@@ -85,6 +85,15 @@
     return cell;
 }
 
+#pragma mark - Beacon selection
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CLBeacon *selectedBeacon = self.beaconController.nearbyBeacons[indexPath.row];
+    UIAlertView *selectedBeaconAlert = [[UIAlertView alloc] initWithTitle:@"Add child?" message:[NSString stringWithFormat:@"Do you want to start monitoring this child?\n\n%@-%@", selectedBeacon.major, selectedBeacon.minor] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Accept", nil];
+    [selectedBeaconAlert show];
+}
+
 #pragma mark - Header view
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section

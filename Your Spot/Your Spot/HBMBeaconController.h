@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Matthew Cheetham. All rights reserved.
 //
 
+@class HBMChild;
+
 #import <Foundation/Foundation.h>
 
 @interface HBMBeaconController : NSObject
@@ -16,6 +18,11 @@
 
 + (HBMBeaconController *)sharedController;
 
+/**
+ Add a new child to monitor the regio nof
+ @param child The child to add
+ **/
+- (void)addMonitoredChild:(HBMChild *)child;
 
 /**
  Starts looking for all recognised beacons in the nearby vicinity. All monitored beacons are accessible from the monitoredRegions array
