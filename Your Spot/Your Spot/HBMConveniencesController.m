@@ -53,11 +53,31 @@ static HBMConveniencesController *sharedController = nil;
         [self.conveniences addObject:convenience];
         
     }
-    
 }
 
 - (void)nearestConvenienceWithLocation:(CLLocation *)location completion:(HBMNearestConvenienceCompletion)completion
 {
+    
+    NSArray *sortedLocations = [self.conveniences sortedArrayUsingComparator:^NSComparisonResult(HBMConvenience *obj1, HBMConvenience *obj2) {
+        CLLocationDistance distance1 = [location distanceFromLocation:obj1.convenienceLocation];
+        CLLocationDistance distance2 = [location distanceFromLocation:obj2.convenienceLocation];
+        
+        if (distance1 < distance2)
+        {
+            return NSOrderedAscending;
+        }
+        else if (distance1 > distance2)
+        {
+            return NSOrderedDescending;
+        }
+        else
+        {
+            return NSOrderedSame;
+        }
+    }];
+    
+    
+    completion(sortedLocations[0], nil);
     
 }
 
