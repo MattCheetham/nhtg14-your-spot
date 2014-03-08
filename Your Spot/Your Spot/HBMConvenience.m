@@ -17,7 +17,7 @@
         
         self.convenienceName = dictionary[@"Sub_Building_Name"];
         self.convenienceAddress = dictionary[@"FULL_ADDRESS"];
-        self.convenienceLocation = [[CLLocation alloc] initWithLatitude:[dictionary[@"x"] doubleValue] longitude:[dictionary[@"y"] doubleValue]];
+        self.convenienceLocation = [[CLLocation alloc] initWithLatitude:[dictionary[@"X"] doubleValue] longitude:[dictionary[@"Y"] doubleValue]];
         
     }
     return self;
