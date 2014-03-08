@@ -143,7 +143,7 @@
 {
     switch (section) {
         case 1:
-            return @"Looking for beacons...";
+            return @"Finding available Beacons";
             break;
             
         default:
@@ -161,7 +161,7 @@
         UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [headerView addSubview:indicatorView];
         
-        indicatorView.frame = CGRectMake(205, 12, indicatorView.frame.size.width, indicatorView.frame.size.height);
+        indicatorView.frame = CGRectMake(225, 12, indicatorView.frame.size.width, indicatorView.frame.size.height);
         [indicatorView startAnimating];
         
         return headerView;
