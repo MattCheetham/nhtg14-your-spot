@@ -8,6 +8,7 @@
 
 #import "HBMAppDelegate.h"
 #import "HBMConveniencesController.h"
+#import "HBMBeaconController.h"
 
 @implementation HBMAppDelegate
 
@@ -18,6 +19,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [HBMConveniencesController sharedController];
+    [HBMBeaconController sharedController];
     return YES;
 }
 

@@ -10,6 +10,6 @@
 
 @interface HBMChild : NSObject
 
-@property (nonatomic, strong) CLBeacon *beacon;
+@property (nonatomic, strong) CLBeaconRegion *beaconRegion;
 
 @end
