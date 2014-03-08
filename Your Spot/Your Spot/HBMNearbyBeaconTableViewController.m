@@ -121,7 +121,7 @@
         
         CLBeacon *nearbyBeacon = self.beaconController.nearbyBeacons[indexPath.row];
         cell.textLabel.text = [self.beaconController commonIdentifierForBeacon:nearbyBeacon];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@", nearbyBeacon.major, nearbyBeacon.minor];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@-%@", nearbyBeacon.major, nearbyBeacon.minor, [self.beaconController stringFromProximity:nearbyBeacon.proximity]];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
         return cell;

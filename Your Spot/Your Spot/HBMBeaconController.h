@@ -51,4 +51,12 @@
  @return NSString The name of the beacon (E.G. Estimote)
  **/
 - (NSString *)commonIdentifierForBeacon:(CLBeacon *)beacon;
+
+/**
+ Converts a CLProximity to a human readable string
+ @param proximity CLProximity that you wish to convert
+ @return NSString A nice readable string (e.g. Far away)
+ **/
+- (NSString *)stringFromProximity:(CLProximity)proximity;
+
 @end
