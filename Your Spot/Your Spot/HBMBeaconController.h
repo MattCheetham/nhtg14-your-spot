@@ -10,6 +10,9 @@
 
 @interface HBMBeaconController : NSObject
 
+@property (nonatomic, strong) NSMutableArray *monitoredFriends;
+@property (nonatomic, strong) NSMutableArray *monitoredChildren;
+
 + (HBMBeaconController *)sharedController;
 
 @end
