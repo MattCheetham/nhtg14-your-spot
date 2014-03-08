@@ -74,18 +74,55 @@ static HBMBeaconController *sharedController = nil;
     
 }
 
-#pragma mark - Region handling
+#pragma mark - Region Range handling
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
     CLBeacon *firstBeacon = [beacons firstObject];
     NSLog(@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]);
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    localNotif.alertBody = [NSString stringWithFormat:@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]];
+    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
 }
 
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error
 {
     NSLog(@"Failed to range");
 }
-          
+
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region{
+    
+    if (state == CLRegionStateInside) {
+        
+        NSLog(@"Inside");
+    }
+    
+    else{
+        
+        NSLog(@"Outside");
+        
+    }
+    
+}
+
+#pragma mark - Region Enter/Exit
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    NSLog(@"Found them!");
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    localNotif.alertBody = @"Found them!";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    NSLog(@"Lost them!");
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    localNotif.alertBody = @"Lost them!";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
+
+}
+
 #pragma mark - Proximity convneience methods
 
 - (NSString *)stringFromProximity:(CLProximity)proximity
