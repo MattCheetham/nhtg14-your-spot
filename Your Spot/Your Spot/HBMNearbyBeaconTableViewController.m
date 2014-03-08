@@ -9,6 +9,7 @@
 #import "HBMNearbyBeaconTableViewController.h"
 #import "HBMBeaconController.h"
 #import "HBMAvailableBeaconCell.h"
+#import "HBMInputCell.h"
 
 @interface HBMNearbyBeaconTableViewController ()
 
@@ -38,6 +39,7 @@
         [self.beaconController addObserver:self forKeyPath:@"nearbyBeacons" options:kNilOptions context:nil];
         
         [self.tableView registerClass:[HBMAvailableBeaconCell class] forCellReuseIdentifier:@"Cell"];
+        [self.tableView registerClass:[HBMInputCell class] forCellReuseIdentifier:@"inputCell"];
         
     }
     return self;
@@ -86,7 +88,7 @@
             break;
         case 1:
             return self.beaconController.nearbyBeacons.count;
-            
+            break;
         default:
             return 0;
             break;
@@ -95,31 +97,38 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    HBMAvailableBeaconCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
     if (indexPath.section == 0){
+        
+        static NSString *inputCellIdentifier = @"inputCell";
+        HBMInputCell *inputCell = [tableView dequeueReusableCellWithIdentifier:inputCellIdentifier forIndexPath:indexPath];
         
         if(indexPath.row == 0){
             
-            cell.textLabel.text = @"Name";
+            inputCell.textLabel.text = @"Name";
             
         } else if(indexPath.row == 1){
             
-            cell.textLabel.text = @"Upload Image";
+            inputCell.textLabel.text = @"Upload Image";
             
         }
+        
+        return inputCell;
     
     } else if(indexPath.section == 1){
+        
+        static NSString *CellIdentifier = @"Cell";
+        HBMAvailableBeaconCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         
         CLBeacon *nearbyBeacon = self.beaconController.nearbyBeacons[indexPath.row];
         cell.textLabel.text = [self.beaconController commonIdentifierForBeacon:nearbyBeacon];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@", nearbyBeacon.major, nearbyBeacon.minor];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
+        return cell;
     }
     
-    return cell;
+    return nil;
+    
 }
 
 #pragma mark - Beacon selection
@@ -180,6 +189,6 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    [self.tableView reloadData];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
 }
 @end

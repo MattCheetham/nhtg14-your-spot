@@ -39,8 +39,9 @@ static HBMBeaconController *sharedController = nil;
         self.locationManager.delegate = self;
         self.monitoredChildren = [NSMutableArray array];
         self.monitoredFriends = [NSMutableArray array];
-        self.nearbyBeacons = [NSArray array];
+        self.nearbyBeacons = [NSMutableArray array];
         self.monitoredRegions = [NSMutableArray array];
+        self.nearbyBeaconDictionary = [NSMutableDictionary dictionary];
                         
     }
     return self;
@@ -108,8 +109,17 @@ static HBMBeaconController *sharedController = nil;
 #pragma mark - Region Range handling
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
+    
+    [self.nearbyBeaconDictionary setObject:beacons forKey:region.identifier];
+    
+    [self.nearbyBeacons removeAllObjects];
+
     [self willChangeValueForKey:@"nearbyBeacons"];
-    self.nearbyBeacons = beacons;
+    for (NSString *key in [self.nearbyBeaconDictionary allKeys]){
+        
+        [self.nearbyBeacons addObjectsFromArray:self.nearbyBeaconDictionary[key]];
+        
+    }
     [self didChangeValueForKey:@"nearbyBeacons"];
     
 //    CLBeacon *firstBeacon = [beacons firstObject];
