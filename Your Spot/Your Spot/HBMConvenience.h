@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) NSString *convenienceName;
 @property (nonatomic, strong) NSString *convenienceAddress;
-@property (nonatomic, strong) CLLoc
+@property (nonatomic, strong) CLLocation *convenienceLocation;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 
