@@ -31,7 +31,7 @@
         self.title = @"Add Child";
         
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(finishAdding)];
         
         self.beaconController = [HBMBeaconController sharedController];
         
@@ -41,6 +41,12 @@
         
     }
     return self;
+}
+
+- (void)finishAdding
+{
+    [self.beaconController stopLookingForNearbyBeacons];
+    [self.beaconController startMonitoringChildren];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -159,7 +165,7 @@
         headerView.contentView.backgroundColor = [UIColor colorWithRed:235.0f/255.0f green:235.0f/255.0f blue:235.0f/255.0f alpha:1.0];
         
         UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        [headerView addSubview:indicatorView];
+        [headerView.contentView addSubview:indicatorView];
         
         indicatorView.frame = CGRectMake(225, 12, indicatorView.frame.size.width, indicatorView.frame.size.height);
         [indicatorView startAnimating];
