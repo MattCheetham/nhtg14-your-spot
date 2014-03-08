@@ -23,6 +23,8 @@
 		49FBE9FA18CB34E600D7C3B4 /* HBMConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FBE9F918CB34E600D7C3B4 /* HBMConvenience.m */; };
 		49FBE9FD18CB367A00D7C3B4 /* conveniences.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FBE9FC18CB367A00D7C3B4 /* conveniences.json */; };
 		49FBE9FF18CB38A200D7C3B4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */; };
+		6570A67D18CB675100AFC160 /* HBMProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6570A67C18CB675100AFC160 /* HBMProfileImageView.m */; };
+		6570A67F18CB6C2600AFC160 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6570A67E18CB6C2600AFC160 /* QuartzCore.framework */; };
 		659B035318CB52320065DA5C /* HBMNearbyPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659B035218CB52320065DA5C /* HBMNearbyPeopleViewController.m */; };
 		659B035818CB56390065DA5C /* HBMConcentricCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659B035718CB56390065DA5C /* HBMConcentricCircleView.m */; };
 /* End PBXBuildFile section */
@@ -60,6 +62,9 @@
 		49FBE9F918CB34E600D7C3B4 /* HBMConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMConvenience.m; sourceTree = "<group>"; };
 		49FBE9FC18CB367A00D7C3B4 /* conveniences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conveniences.json; sourceTree = "<group>"; };
 		49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6570A67B18CB675100AFC160 /* HBMProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMProfileImageView.h; sourceTree = "<group>"; };
+		6570A67C18CB675100AFC160 /* HBMProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMProfileImageView.m; sourceTree = "<group>"; };
+		6570A67E18CB6C2600AFC160 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		659B035118CB52320065DA5C /* HBMNearbyPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMNearbyPeopleViewController.h; sourceTree = "<group>"; };
 		659B035218CB52320065DA5C /* HBMNearbyPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMNearbyPeopleViewController.m; sourceTree = "<group>"; };
 		659B035618CB56390065DA5C /* HBMConcentricCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMConcentricCircleView.h; sourceTree = "<group>"; };
@@ -71,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6570A67F18CB6C2600AFC160 /* QuartzCore.framework in Frameworks */,
 				49FBE9FF18CB38A200D7C3B4 /* CoreLocation.framework in Frameworks */,
 				49FBE98A18CB2BCA00D7C3B4 /* CoreGraphics.framework in Frameworks */,
 				49FBE98C18CB2BCA00D7C3B4 /* UIKit.framework in Frameworks */,
@@ -113,6 +119,7 @@
 		49FBE98618CB2BCA00D7C3B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6570A67E18CB6C2600AFC160 /* QuartzCore.framework */,
 				49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */,
 				49FBE98718CB2BCA00D7C3B4 /* Foundation.framework */,
 				49FBE98918CB2BCA00D7C3B4 /* CoreGraphics.framework */,
@@ -191,6 +198,8 @@
 			children = (
 				659B035618CB56390065DA5C /* HBMConcentricCircleView.h */,
 				659B035718CB56390065DA5C /* HBMConcentricCircleView.m */,
+				6570A67B18CB675100AFC160 /* HBMProfileImageView.h */,
+				6570A67C18CB675100AFC160 /* HBMProfileImageView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -292,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6570A67D18CB675100AFC160 /* HBMProfileImageView.m in Sources */,
 				49FBE99818CB2BCA00D7C3B4 /* HBMAppDelegate.m in Sources */,
 				49FBE99418CB2BCA00D7C3B4 /* main.m in Sources */,
 				659B035818CB56390065DA5C /* HBMConcentricCircleView.m in Sources */,

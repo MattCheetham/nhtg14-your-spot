@@ -8,6 +8,7 @@
 
 #import "HBMNearbyPeopleViewController.h"
 #import "HBMConcentricCircleView.h"
+#import "HBMProfileImageView.h"
 
 @interface HBMNearbyPeopleViewController ()
 
@@ -22,7 +23,9 @@
         // Custom initialization
         HBMConcentricCircleView *circleView = [[HBMConcentricCircleView alloc] initWithFrame:CGRectMake(0, 0, 320, 320)];
         circleView.center = self.view.center;
+        
         [self.view addSubview:circleView];
+        
     }
     return self;
 }
