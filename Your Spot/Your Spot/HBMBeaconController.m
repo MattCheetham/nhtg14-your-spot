@@ -61,7 +61,9 @@ static HBMBeaconController *sharedController = nil;
     
     [self.monitoredRegions addObjectsFromArray:@[estimoteRegion, appRegion]];
     
-    [self.locationManager startRangingBeaconsInRegion:estimoteRegion];
+    for (CLBeaconRegion *region in self.monitoredRegions){
+        [self.locationManager startRangingBeaconsInRegion:region];
+    }
 }
 
 - (void)stopLookingForNearbyBeacons
