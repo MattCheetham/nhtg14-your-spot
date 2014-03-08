@@ -28,6 +28,11 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
         
+        self.title = @"Add Child";
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:nil action:nil];
+        
         self.beaconController = [HBMBeaconController sharedController];
         
         [self.beaconController addObserver:self forKeyPath:@"nearbyBeacons" options:kNilOptions context:nil];
