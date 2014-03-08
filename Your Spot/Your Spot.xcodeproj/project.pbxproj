@@ -19,6 +19,7 @@
 		49FBE9A318CB2BCA00D7C3B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FBE98B18CB2BCA00D7C3B4 /* UIKit.framework */; };
 		49FBE9AB18CB2BCA00D7C3B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49FBE9A918CB2BCA00D7C3B4 /* InfoPlist.strings */; };
 		49FBE9AD18CB2BCA00D7C3B4 /* Your_SpotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FBE9AC18CB2BCA00D7C3B4 /* Your_SpotTests.m */; };
+		49FBE9F718CB34B000D7C3B4 /* HBMConveniencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FBE9F618CB34B000D7C3B4 /* HBMConveniencesController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,8 @@
 		49FBE9A818CB2BCA00D7C3B4 /* Your SpotTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Your SpotTests-Info.plist"; sourceTree = "<group>"; };
 		49FBE9AA18CB2BCA00D7C3B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49FBE9AC18CB2BCA00D7C3B4 /* Your_SpotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Your_SpotTests.m; sourceTree = "<group>"; };
+		49FBE9F518CB34B000D7C3B4 /* HBMConveniencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HBMConveniencesController.h; path = "Your Spot/HBMConveniencesController.h"; sourceTree = "<group>"; };
+		49FBE9F618CB34B000D7C3B4 /* HBMConveniencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HBMConveniencesController.m; path = "Your Spot/HBMConveniencesController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 		49FBE97B18CB2BCA00D7C3B4 = {
 			isa = PBXGroup;
 			children = (
+				49FBE9F518CB34B000D7C3B4 /* HBMConveniencesController.h */,
+				49FBE9F618CB34B000D7C3B4 /* HBMConveniencesController.m */,
 				49FBE98D18CB2BCA00D7C3B4 /* Your Spot */,
 				49FBE9A618CB2BCA00D7C3B4 /* Your SpotTests */,
 				49FBE98618CB2BCA00D7C3B4 /* Frameworks */,
@@ -242,6 +247,7 @@
 			files = (
 				49FBE99818CB2BCA00D7C3B4 /* HBMAppDelegate.m in Sources */,
 				49FBE99418CB2BCA00D7C3B4 /* main.m in Sources */,
+				49FBE9F718CB34B000D7C3B4 /* HBMConveniencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +448,7 @@
 				49FBE9B218CB2BCA00D7C3B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49FBE9B318CB2BCA00D7C3B4 /* Build configuration list for PBXNativeTarget "Your SpotTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +457,7 @@
 				49FBE9B518CB2BCA00D7C3B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
