@@ -57,8 +57,9 @@ static HBMBeaconController *sharedController = nil;
 {
     //List of beacon brands we need to look for, and our own
     CLBeaconRegion *estimoteRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"] identifier:@"Estimote"];
+    CLBeaconRegion *appRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:kYourSpotUUUID] identifier:@"Your Spot User"];
     
-    [self.monitoredRegions addObject:estimoteRegion];
+    [self.monitoredRegions addObjectsFromArray:@[estimoteRegion, appRegion]];
     
     [self.locationManager startRangingBeaconsInRegion:estimoteRegion];
 }
