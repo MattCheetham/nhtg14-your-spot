@@ -19,6 +19,10 @@
 		49FBE9A318CB2BCA00D7C3B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FBE98B18CB2BCA00D7C3B4 /* UIKit.framework */; };
 		49FBE9AB18CB2BCA00D7C3B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49FBE9A918CB2BCA00D7C3B4 /* InfoPlist.strings */; };
 		49FBE9AD18CB2BCA00D7C3B4 /* Your_SpotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FBE9AC18CB2BCA00D7C3B4 /* Your_SpotTests.m */; };
+		49FBE9F718CB34B000D7C3B4 /* HBMConveniencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FBE9F618CB34B000D7C3B4 /* HBMConveniencesController.m */; };
+		49FBE9FA18CB34E600D7C3B4 /* HBMConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FBE9F918CB34E600D7C3B4 /* HBMConvenience.m */; };
+		49FBE9FD18CB367A00D7C3B4 /* conveniences.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FBE9FC18CB367A00D7C3B4 /* conveniences.json */; };
+		49FBE9FF18CB38A200D7C3B4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,12 @@
 		49FBE9A818CB2BCA00D7C3B4 /* Your SpotTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Your SpotTests-Info.plist"; sourceTree = "<group>"; };
 		49FBE9AA18CB2BCA00D7C3B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49FBE9AC18CB2BCA00D7C3B4 /* Your_SpotTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Your_SpotTests.m; sourceTree = "<group>"; };
+		49FBE9F518CB34B000D7C3B4 /* HBMConveniencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMConveniencesController.h; sourceTree = "<group>"; };
+		49FBE9F618CB34B000D7C3B4 /* HBMConveniencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMConveniencesController.m; sourceTree = "<group>"; };
+		49FBE9F818CB34E600D7C3B4 /* HBMConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMConvenience.h; sourceTree = "<group>"; };
+		49FBE9F918CB34E600D7C3B4 /* HBMConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMConvenience.m; sourceTree = "<group>"; };
+		49FBE9FC18CB367A00D7C3B4 /* conveniences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conveniences.json; sourceTree = "<group>"; };
+		49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49FBE9FF18CB38A200D7C3B4 /* CoreLocation.framework in Frameworks */,
 				49FBE98A18CB2BCA00D7C3B4 /* CoreGraphics.framework in Frameworks */,
 				49FBE98C18CB2BCA00D7C3B4 /* UIKit.framework in Frameworks */,
 				49FBE98818CB2BCA00D7C3B4 /* Foundation.framework in Frameworks */,
@@ -96,6 +107,7 @@
 		49FBE98618CB2BCA00D7C3B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */,
 				49FBE98718CB2BCA00D7C3B4 /* Foundation.framework */,
 				49FBE98918CB2BCA00D7C3B4 /* CoreGraphics.framework */,
 				49FBE98B18CB2BCA00D7C3B4 /* UIKit.framework */,
@@ -110,6 +122,7 @@
 				49FBE99618CB2BCA00D7C3B4 /* HBMAppDelegate.h */,
 				49FBE99718CB2BCA00D7C3B4 /* HBMAppDelegate.m */,
 				49FBE99918CB2BCA00D7C3B4 /* Images.xcassets */,
+				49FBE9FB18CB34EE00D7C3B4 /* Conveniences */,
 				49FBE98E18CB2BCA00D7C3B4 /* Supporting Files */,
 			);
 			path = "Your Spot";
@@ -142,6 +155,18 @@
 				49FBE9A918CB2BCA00D7C3B4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49FBE9FB18CB34EE00D7C3B4 /* Conveniences */ = {
+			isa = PBXGroup;
+			children = (
+				49FBE9FC18CB367A00D7C3B4 /* conveniences.json */,
+				49FBE9F518CB34B000D7C3B4 /* HBMConveniencesController.h */,
+				49FBE9F618CB34B000D7C3B4 /* HBMConveniencesController.m */,
+				49FBE9F818CB34E600D7C3B4 /* HBMConvenience.h */,
+				49FBE9F918CB34E600D7C3B4 /* HBMConvenience.m */,
+			);
+			name = Conveniences;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49FBE99218CB2BCA00D7C3B4 /* InfoPlist.strings in Resources */,
+				49FBE9FD18CB367A00D7C3B4 /* conveniences.json in Resources */,
 				49FBE99A18CB2BCA00D7C3B4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +268,8 @@
 			files = (
 				49FBE99818CB2BCA00D7C3B4 /* HBMAppDelegate.m in Sources */,
 				49FBE99418CB2BCA00D7C3B4 /* main.m in Sources */,
+				49FBE9F718CB34B000D7C3B4 /* HBMConveniencesController.m in Sources */,
+				49FBE9FA18CB34E600D7C3B4 /* HBMConvenience.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +470,7 @@
 				49FBE9B218CB2BCA00D7C3B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49FBE9B318CB2BCA00D7C3B4 /* Build configuration list for PBXNativeTarget "Your SpotTests" */ = {
 			isa = XCConfigurationList;
@@ -450,6 +479,7 @@
 				49FBE9B518CB2BCA00D7C3B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
