@@ -70,7 +70,11 @@ static HBMBeaconController *sharedController = nil;
 
 - (void)stopMonitoringChildren
 {
-    
+    for (HBMChild *child in self.monitoredChildren){
+        
+        [self.locationManager stopRangingBeaconsInRegion:child.beaconRegion];
+        
+    }
 }
 
 #pragma mark - Region Range handling
