@@ -12,6 +12,7 @@
 @interface HBMBeaconController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) NSMutableArray *monitoredRegions;
 
 @end
 
@@ -39,6 +40,7 @@ static HBMBeaconController *sharedController = nil;
         self.monitoredChildren = [NSMutableArray array];
         self.monitoredFriends = [NSMutableArray array];
         self.nearbyBeacons = [NSArray array];
+        self.monitoredRegions = [NSMutableArray array];
         
         [self.monitoredChildren addObject:[[HBMChild alloc] init]];
         
@@ -55,6 +57,8 @@ static HBMBeaconController *sharedController = nil;
 {
     //List of beacon brands we need to look for, and our own
     CLBeaconRegion *estimoteRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"] identifier:@"Estimote"];
+    
+    [self.monitoredRegions addObject:estimoteRegion];
     
     [self.locationManager startRangingBeaconsInRegion:estimoteRegion];
 }
@@ -144,9 +148,9 @@ static HBMBeaconController *sharedController = nil;
 
 - (NSString *)commonIdentifierForBeacon:(CLBeacon *)beacon
 {
-    for (CLBeaconRegion *existingBeacon in self.locationManager.monitoredRegions){
+    for (CLBeaconRegion *existingBeacon in self.monitoredRegions){
         
-        if(existingBeacon.proximityUUID == beacon.proximityUUID){
+        if([existingBeacon.proximityUUID.UUIDString isEqualToString:beacon.proximityUUID.UUIDString]){
             
             return existingBeacon.identifier;
             break;
