@@ -38,6 +38,18 @@
     return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.beaconController startLookingForNearbyBeacons];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.beaconController stopLookingForNearbyBeacons];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -43,10 +43,7 @@ static HBMBeaconController *sharedController = nil;
         self.monitoredRegions = [NSMutableArray array];
         
         [self.monitoredChildren addObject:[[HBMChild alloc] init]];
-        
-//        [self startMonitoringChildren];
-        [self startLookingForNearbyBeacons];
-        
+                
     }
     return self;
 }
