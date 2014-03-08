@@ -16,6 +16,17 @@
 
 + (HBMBeaconController *)sharedController;
 
+
+/**
+ Starts looking for all recognised beacons in the nearby vicinity. All monitored beacons are accessible from the monitoredRegions array
+ **/
+- (void)startLookingForNearbyBeacons;
+
+/**
+ Cancels searching for beacons based on the monitoredRegions array
+**/
+- (void)stopLookingForNearbyBeacons;
+
 /**
  Enables monitoring of any added children with a ranging mode. Notifications will be sent when a child is going out of range and has gone out of range
  **/
