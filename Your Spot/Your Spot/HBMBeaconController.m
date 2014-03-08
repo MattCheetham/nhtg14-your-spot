@@ -38,16 +38,26 @@ static HBMBeaconController *sharedController = nil;
         self.locationManager.delegate = self;
         self.monitoredChildren = [NSMutableArray array];
         self.monitoredFriends = [NSMutableArray array];
+        self.nearbyBeacons = [NSArray array];
         
         [self.monitoredChildren addObject:[[HBMChild alloc] init]];
         
-        [self startMonitoringChildren];
+//        [self startMonitoringChildren];
+        [self startLookingForNearbyBeacons];
         
     }
     return self;
 }
 
 #pragma mark - Handle start/stop of monitoring
+
+- (void)startLookingForNearbyBeacons
+{
+    //List of beacon brands we need to look for, and our own
+    CLBeaconRegion *estimoteRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"] identifier:@"Estimote"];
+    
+    [self.locationManager startRangingBeaconsInRegion:estimoteRegion];
+}
 
 - (void)startMonitoringFriends
 {
@@ -80,11 +90,15 @@ static HBMBeaconController *sharedController = nil;
 #pragma mark - Region Range handling
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
-    CLBeacon *firstBeacon = [beacons firstObject];
-    NSLog(@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]);
-    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
-    localNotif.alertBody = [NSString stringWithFormat:@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]];
-    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
+    [self willChangeValueForKey:@"nearbyBeacons"];
+    self.nearbyBeacons = beacons;
+    [self didChangeValueForKey:@"nearbyBeacons"];
+    
+//    CLBeacon *firstBeacon = [beacons firstObject];
+//    NSLog(@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]);
+//    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+//    localNotif.alertBody = [NSString stringWithFormat:@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]];
+//    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
 }
 
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error

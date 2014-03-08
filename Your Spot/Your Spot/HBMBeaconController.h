@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSMutableArray *monitoredFriends;
 @property (nonatomic, strong) NSMutableArray *monitoredChildren;
+@property (nonatomic, strong) NSArray *nearbyBeacons;
 
 + (HBMBeaconController *)sharedController;
 
