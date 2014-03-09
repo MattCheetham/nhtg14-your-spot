@@ -12,6 +12,7 @@
 #import "HBMConvenience.h"
 #import <MapKit/MapKit.h>
 #import "HBMImageHeaderCell.h"
+#import "PCHUDActivityView.h"
 
 @interface HBMConvenienceDirectionsViewController ()
 
@@ -40,6 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [PCHUDActivityView startInView:self.view];
     
     PCSingleRequestLocationManager *manager = [PCSingleRequestLocationManager new];
     [manager requestCurrentLocationWithCompletion:^(CLLocation *location, NSError *error) {
@@ -77,6 +79,9 @@
                         NSLog(@"I have directions:%@", response);
                         NSLog(@"Error:%@", error);
                         
+                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                            [PCHUDActivityView finishInView:self.view];
+                        }];
                         [self.tableView reloadData];
                         
                     }];
