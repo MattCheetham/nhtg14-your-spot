@@ -21,7 +21,7 @@
             CAShapeLayer *shapeLayer = [CAShapeLayer layer];
             
             CGRect containmentRect = CGRectInset(frame, 40 * i, 40 * i);
-            UIColor *backgroundColor = [UIColor colorWithWhite:0.98 - (0.04 * i) alpha:1.0];
+            UIColor *backgroundColor = [UIColor colorWithWhite:0.98 - (0.04 * i) alpha:0.2];
             
             shapeLayer.bounds = containmentRect;
             shapeLayer.position = CGPointMake(CGRectGetMidX(frame),
