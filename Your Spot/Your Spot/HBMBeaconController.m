@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *monitoredRegions;
+@property (nonatomic) BOOL isScanningForAllBeacons;
 
 @end
 
@@ -58,6 +59,7 @@ static HBMBeaconController *sharedController = nil;
 
 - (void)startLookingForNearbyBeacons
 {
+    self.isScanningForAllBeacons = YES;
     //List of beacon brands we need to look for, and our own
     CLBeaconRegion *estimoteRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"] identifier:@"Estimote"];
     CLBeaconRegion *appRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:kYourSpotUUUID] identifier:@"Your Spot User"];
@@ -76,6 +78,7 @@ static HBMBeaconController *sharedController = nil;
         [self.locationManager stopRangingBeaconsInRegion:monitoredRegion];
         
     }
+    self.isScanningForAllBeacons = NO;
 }
 
 - (void)startMonitoringFriends
@@ -110,18 +113,41 @@ static HBMBeaconController *sharedController = nil;
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
     
-    [self.nearbyBeaconDictionary setObject:beacons forKey:region.identifier];
-    
-    [self.nearbyBeacons removeAllObjects];
+    if(self.isScanningForAllBeacons){
+        [self.nearbyBeaconDictionary setObject:beacons forKey:region.identifier];
+        
+        [self.nearbyBeacons removeAllObjects];
 
-    [self willChangeValueForKey:@"nearbyBeacons"];
-    for (NSString *key in [self.nearbyBeaconDictionary allKeys]){
-        
-        [self.nearbyBeacons addObjectsFromArray:self.nearbyBeaconDictionary[key]];
-        
-    }
-    [self didChangeValueForKey:@"nearbyBeacons"];
+        [self willChangeValueForKey:@"nearbyBeacons"];
+        for (NSString *key in [self.nearbyBeaconDictionary allKeys]){
+            
+            [self.nearbyBeacons addObjectsFromArray:self.nearbyBeaconDictionary[key]];
+            
+        }
+        [self didChangeValueForKey:@"nearbyBeacons"];
+    } else {
     
+        for(CLBeacon *nearbyBeacon in beacons){
+            
+            for(HBMChild *monitoredChild in self.monitoredChildren){
+                
+                if([nearbyBeacon.minor isEqualToNumber:monitoredChild.beaconRegion.minor] && [nearbyBeacon.major isEqualToNumber:monitoredChild.beaconRegion.major] && [nearbyBeacon.proximityUUID.UUIDString isEqualToString:monitoredChild.beaconRegion.proximityUUID.UUIDString]){
+                    
+                    if(monitoredChild.currentProximity != nearbyBeacon.proximity){
+                        
+                        NSLog(@"Updating %@'s proximity from %@ to %@", monitoredChild.childName, [self stringFromProximity:monitoredChild.currentProximity], [self stringFromProximity:nearbyBeacon.proximity]);
+                        monitoredChild.currentProximity = nearbyBeacon.proximity;
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    
+    }
+
 //    CLBeacon *firstBeacon = [beacons firstObject];
 //    NSLog(@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]);
 //    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
