@@ -108,7 +108,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[HBMBeaconController sharedController] stopMonitoringChildren];
+//    [[HBMBeaconController sharedController] stopMonitoringChildren];
 
 }
 
