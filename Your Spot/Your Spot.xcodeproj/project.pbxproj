@@ -10,6 +10,9 @@
 		49141EBA18CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49141EB918CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m */; };
 		49141EBD18CB8C67000C6BC3 /* HBMInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49141EBC18CB8C67000C6BC3 /* HBMInputCell.m */; };
 		4924EA0518CC8D6B0022B3BD /* range.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4924EA0418CC8D6B0022B3BD /* range.caf */; };
+		4924EA0818CCA0F10022B3BD /* HBMConvenienceDirectionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4924EA0718CCA0F10022B3BD /* HBMConvenienceDirectionsViewController.m */; };
+		4924EA0A18CCA1480022B3BD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4924EA0918CCA1480022B3BD /* MapKit.framework */; };
+		4924EA0D18CCA20D0022B3BD /* PCSingleRequestLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4924EA0C18CCA20D0022B3BD /* PCSingleRequestLocationManager.m */; };
 		493A5BFB18CB49CB00C66094 /* HBMBeaconController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */; };
 		493A5BFE18CB4C8300C66094 /* HBMChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5BFD18CB4C8300C66094 /* HBMChild.m */; };
 		493A5C0218CB5BB400C66094 /* HBMNearbyBeaconTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5C0118CB5BB400C66094 /* HBMNearbyBeaconTableViewController.m */; };
@@ -52,6 +55,11 @@
 		49141EBB18CB8C67000C6BC3 /* HBMInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMInputCell.h; sourceTree = "<group>"; };
 		49141EBC18CB8C67000C6BC3 /* HBMInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMInputCell.m; sourceTree = "<group>"; };
 		4924EA0418CC8D6B0022B3BD /* range.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = range.caf; sourceTree = "<group>"; };
+		4924EA0618CCA0F10022B3BD /* HBMConvenienceDirectionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMConvenienceDirectionsViewController.h; sourceTree = "<group>"; };
+		4924EA0718CCA0F10022B3BD /* HBMConvenienceDirectionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMConvenienceDirectionsViewController.m; sourceTree = "<group>"; };
+		4924EA0918CCA1480022B3BD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		4924EA0B18CCA20D0022B3BD /* PCSingleRequestLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PCSingleRequestLocationManager.h; sourceTree = "<group>"; };
+		4924EA0C18CCA20D0022B3BD /* PCSingleRequestLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCSingleRequestLocationManager.m; sourceTree = "<group>"; };
 		493A5BF918CB49CB00C66094 /* HBMBeaconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMBeaconController.h; sourceTree = "<group>"; };
 		493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMBeaconController.m; sourceTree = "<group>"; };
 		493A5BFC18CB4C8300C66094 /* HBMChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMChild.h; sourceTree = "<group>"; };
@@ -96,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4924EA0A18CCA1480022B3BD /* MapKit.framework in Frameworks */,
 				6570A67F18CB6C2600AFC160 /* QuartzCore.framework in Frameworks */,
 				49FBE9FF18CB38A200D7C3B4 /* CoreLocation.framework in Frameworks */,
 				49FBE98A18CB2BCA00D7C3B4 /* CoreGraphics.framework in Frameworks */,
@@ -117,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4924EA0E18CCA2110022B3BD /* Request Manager */ = {
+			isa = PBXGroup;
+			children = (
+				4924EA0B18CCA20D0022B3BD /* PCSingleRequestLocationManager.h */,
+				4924EA0C18CCA20D0022B3BD /* PCSingleRequestLocationManager.m */,
+			);
+			name = "Request Manager";
+			sourceTree = "<group>";
+		};
 		493A5BF818CB49B600C66094 /* Beacons */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +182,7 @@
 		49FBE98618CB2BCA00D7C3B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4924EA0918CCA1480022B3BD /* MapKit.framework */,
 				6570A67E18CB6C2600AFC160 /* QuartzCore.framework */,
 				49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */,
 				49FBE98718CB2BCA00D7C3B4 /* Foundation.framework */,
@@ -182,6 +201,7 @@
 				49FBE99618CB2BCA00D7C3B4 /* HBMAppDelegate.h */,
 				49FBE99718CB2BCA00D7C3B4 /* HBMAppDelegate.m */,
 				49FBE99918CB2BCA00D7C3B4 /* Images.xcassets */,
+				4924EA0E18CCA2110022B3BD /* Request Manager */,
 				493A5BFF18CB4C8600C66094 /* Profiles */,
 				493A5BF818CB49B600C66094 /* Beacons */,
 				49FBE9FB18CB34EE00D7C3B4 /* Conveniences */,
@@ -227,6 +247,8 @@
 				49FBE9F618CB34B000D7C3B4 /* HBMConveniencesController.m */,
 				49FBE9F818CB34E600D7C3B4 /* HBMConvenience.h */,
 				49FBE9F918CB34E600D7C3B4 /* HBMConvenience.m */,
+				4924EA0618CCA0F10022B3BD /* HBMConvenienceDirectionsViewController.h */,
+				4924EA0718CCA0F10022B3BD /* HBMConvenienceDirectionsViewController.m */,
 			);
 			name = Conveniences;
 			sourceTree = "<group>";
@@ -355,10 +377,12 @@
 				49FBE99818CB2BCA00D7C3B4 /* HBMAppDelegate.m in Sources */,
 				49FBE99418CB2BCA00D7C3B4 /* main.m in Sources */,
 				49141EBA18CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m in Sources */,
+				4924EA0D18CCA20D0022B3BD /* PCSingleRequestLocationManager.m in Sources */,
 				493A5BFE18CB4C8300C66094 /* HBMChild.m in Sources */,
 				6570A67D18CB675100AFC160 /* HBMProfileImageView.m in Sources */,
 				659B035818CB56390065DA5C /* HBMConcentricCircleView.m in Sources */,
 				49FBE9F718CB34B000D7C3B4 /* HBMConveniencesController.m in Sources */,
+				4924EA0818CCA0F10022B3BD /* HBMConvenienceDirectionsViewController.m in Sources */,
 				493A5BFB18CB49CB00C66094 /* HBMBeaconController.m in Sources */,
 				49141EBD18CB8C67000C6BC3 /* HBMInputCell.m in Sources */,
 				49FBE9FA18CB34E600D7C3B4 /* HBMConvenience.m in Sources */,
