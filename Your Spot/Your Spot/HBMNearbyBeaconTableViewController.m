@@ -72,7 +72,7 @@
     
     [self.beaconController startMonitoringChildren];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
