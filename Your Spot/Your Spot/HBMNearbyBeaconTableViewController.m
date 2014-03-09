@@ -66,6 +66,7 @@
     
     newChild.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:self.selectedBeacon.proximityUUID major:major minor:minor identifier:self.childNameField.text];
     newChild.childName = self.childNameField.text;
+    newChild.childImage = self.childImage;
     
     [self.beaconController addMonitoredChild:newChild];
     

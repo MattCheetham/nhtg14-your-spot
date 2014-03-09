@@ -17,6 +17,7 @@
         self.beaconRegion.notifyEntryStateOnDisplay = YES;
         self.beaconRegion.notifyOnEntry = YES;
         self.beaconRegion.notifyOnExit = YES;
+        self.currentProximity = CLProximityUnknown;
     }
     return self;
 }
