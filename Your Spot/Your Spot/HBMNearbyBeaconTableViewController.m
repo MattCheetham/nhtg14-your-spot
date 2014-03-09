@@ -286,6 +286,14 @@
     }
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    if (section == 1 && self.beaconController.nearbyBeacons.count){
+        return @"Select the beacon you wish to assosciate with this child";
+    }
+    return nil;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if(section == 1){
