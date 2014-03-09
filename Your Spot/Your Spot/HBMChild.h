@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HBMChild : NSObject
+@interface HBMChild : NSObject <NSCoding>
 
 @property (nonatomic, strong) NSString *childName;
 @property (nonatomic, strong) UIImage *childImage;

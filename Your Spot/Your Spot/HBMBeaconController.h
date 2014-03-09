@@ -9,6 +9,7 @@
 @class HBMChild;
 
 #import <Foundation/Foundation.h>
+#define CHILD_RECORDS_KEY @"HBMChildRecord"
 
 @interface HBMBeaconController : NSObject
 
