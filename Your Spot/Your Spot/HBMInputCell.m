@@ -16,6 +16,8 @@
     if (self) {
         
         self.textField = [UITextField new];
+        self.textField.textAlignment = NSTextAlignmentRight;
+        self.textLabel.backgroundColor = [UIColor clearColor];
         [self.contentView addSubview:self.textField];
         
     }
