@@ -34,7 +34,7 @@
              HBMChild *child = (HBMChild *)obj;
              HBMProfileImageView *profileView = [[HBMProfileImageView alloc] initWithImage:child.childImage
                                                                                      frame:CGRectMake(0, 0, 50, 50)];
-             
+             profileView.child = child;
              
              [view addProfileView:profileView withTier:child.currentProximity];
         }];
@@ -75,10 +75,30 @@
          HBMProfileImageView *profileView = [[HBMProfileImageView alloc] initWithImage:child.childImage
                                                                                  frame:CGRectMake(0, 0, 50, 50)];
          
-         
-         [self.nearbyDevicesView addProfileView:profileView withTier:(child.currentProximity == CLProximityNear ? 1 : 3)];
+         profileView.child = child;
+         [self.nearbyDevicesView addProfileView:profileView withTier:tierForProximity(child.currentProximity)];
      }];
 
+}
+
+NSInteger tierForProximity(CLProximity proximity)
+{
+    if (proximity == CLProximityImmediate)
+    {
+        return 1;
+    }
+    else if (proximity == CLProximityNear)
+    {
+        return 2;
+    }
+    else if (proximity == CLProximityFar)
+    {
+        return 3;
+    }
+    else
+    {
+        return 4;
+    }
 }
 
 - (void)dealloc

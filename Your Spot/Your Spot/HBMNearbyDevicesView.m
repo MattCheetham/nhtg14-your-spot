@@ -8,6 +8,7 @@
 
 #import "HBMNearbyDevicesView.h"
 #import "HBMProfileImageView.h"
+#import "HBMChild.h"
 
 @interface HBMNearbyDevicesView ()
 @property (nonatomic, strong) NSMutableArray *profileViews;
@@ -20,6 +21,34 @@
     if (!self.profileViews)
     {
         self.profileViews = @[].mutableCopy;
+    }
+    
+    for (HBMProfileImageView *profile in self.profileViews)
+    {
+        
+        if ([profile.child.childName isEqualToString:profileView.child.childName])
+        {
+            int index = 0;
+            
+            for (HBMProfileImageView *profile2 in [self profileViewsForTier:profile.tag])
+            {
+                [self positionProfileView:profile2 withIndex:index];
+                index ++;
+            }
+            
+            profile.tag = tier;
+            
+            index = 0;
+            
+            for (HBMProfileImageView *profile2 in [self profileViewsForTier:tier])
+            {
+                [self positionProfileView:profile2 withIndex:index];
+                index ++;
+            }
+            
+            return;
+        }
+        
     }
     
     profileView.tag = tier;
@@ -80,12 +109,12 @@ NSInteger radiansFromDegrees(NSInteger degrees)
 
 - (void)clearAll
 {
-    for (UIView *view in self.subviews)
-    {
-        [view removeFromSuperview];
-    }
-    
-    self.profileViews = @[].mutableCopy;
+//    for (UIView *view in self.subviews)
+//    {
+//        [view removeFromSuperview];
+//    }
+//    
+//    self.profileViews = @[].mutableCopy;
 }
 
 @end

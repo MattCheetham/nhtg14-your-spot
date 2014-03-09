@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class HBMChild;
+
 @interface HBMProfileImageView : UIView
 
 @property (nonatomic, retain) UIColor *borderColor;
+@property (nonatomic, retain) HBMChild *child;
 
 - (instancetype)initWithImage:(UIImage *)image frame:(CGRect)frame;
 
