@@ -353,8 +353,6 @@
 				49141EBA18CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m in Sources */,
 				493A5BFE18CB4C8300C66094 /* HBMChild.m in Sources */,
 				6570A67D18CB675100AFC160 /* HBMProfileImageView.m in Sources */,
-				49FBE99818CB2BCA00D7C3B4 /* HBMAppDelegate.m in Sources */,
-				49FBE99418CB2BCA00D7C3B4 /* main.m in Sources */,
 				659B035818CB56390065DA5C /* HBMConcentricCircleView.m in Sources */,
 				49FBE9F718CB34B000D7C3B4 /* HBMConveniencesController.m in Sources */,
 				493A5BFB18CB49CB00C66094 /* HBMBeaconController.m in Sources */,

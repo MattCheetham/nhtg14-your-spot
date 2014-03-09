@@ -9,7 +9,7 @@
 #import "HBMAppDelegate.h"
 #import "HBMConveniencesController.h"
 #import "HBMBeaconController.h"
-#import "HBMNearbyBeaconTableViewController.h"
+#import "HBMNearbyPeopleViewController.h"
 
 @implementation HBMAppDelegate
 
@@ -20,9 +20,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    HBMNearbyBeaconTableViewController *addBeacon = [HBMNearbyBeaconTableViewController new];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:addBeacon];
-    self.window.rootViewController = navController;
+    self.window.rootViewController = [HBMNearbyPeopleViewController new];
     
     [self.window makeKeyAndVisible];
     
