@@ -160,8 +160,7 @@
         
         CLBeacon *nearbyBeacon = self.beaconController.nearbyBeacons[indexPath.row];
         cell.textLabel.text = [self.beaconController commonIdentifierForBeacon:nearbyBeacon];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@-%@", nearbyBeacon.major, nearbyBeacon.minor, [self.beaconController stringFromProximity:nearbyBeacon.proximity]];
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (ID:%@-%@)", [self.beaconController stringFromProximity:nearbyBeacon.proximity], nearbyBeacon.major, nearbyBeacon.minor];
         
         if([self.selectedBeacon.minor isEqualToNumber:nearbyBeacon.minor] && [self.selectedBeacon.major isEqualToNumber:nearbyBeacon.major]){
             
