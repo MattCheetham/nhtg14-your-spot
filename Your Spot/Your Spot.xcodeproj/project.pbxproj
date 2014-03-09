@@ -28,6 +28,11 @@
 		49FBE9FA18CB34E600D7C3B4 /* HBMConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FBE9F918CB34E600D7C3B4 /* HBMConvenience.m */; };
 		49FBE9FD18CB367A00D7C3B4 /* conveniences.json in Resources */ = {isa = PBXBuildFile; fileRef = 49FBE9FC18CB367A00D7C3B4 /* conveniences.json */; };
 		49FBE9FF18CB38A200D7C3B4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */; };
+		6570A67D18CB675100AFC160 /* HBMProfileImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6570A67C18CB675100AFC160 /* HBMProfileImageView.m */; };
+		6570A67F18CB6C2600AFC160 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6570A67E18CB6C2600AFC160 /* QuartzCore.framework */; };
+		6570A68218CB840200AFC160 /* HBMNearbyDevicesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6570A68118CB840200AFC160 /* HBMNearbyDevicesView.m */; };
+		659B035318CB52320065DA5C /* HBMNearbyPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659B035218CB52320065DA5C /* HBMNearbyPeopleViewController.m */; };
+		659B035818CB56390065DA5C /* HBMConcentricCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659B035718CB56390065DA5C /* HBMConcentricCircleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +78,15 @@
 		49FBE9F918CB34E600D7C3B4 /* HBMConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMConvenience.m; sourceTree = "<group>"; };
 		49FBE9FC18CB367A00D7C3B4 /* conveniences.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = conveniences.json; sourceTree = "<group>"; };
 		49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6570A67B18CB675100AFC160 /* HBMProfileImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMProfileImageView.h; sourceTree = "<group>"; };
+		6570A67C18CB675100AFC160 /* HBMProfileImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMProfileImageView.m; sourceTree = "<group>"; };
+		6570A67E18CB6C2600AFC160 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6570A68018CB840200AFC160 /* HBMNearbyDevicesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMNearbyDevicesView.h; sourceTree = "<group>"; };
+		6570A68118CB840200AFC160 /* HBMNearbyDevicesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMNearbyDevicesView.m; sourceTree = "<group>"; };
+		659B035118CB52320065DA5C /* HBMNearbyPeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMNearbyPeopleViewController.h; sourceTree = "<group>"; };
+		659B035218CB52320065DA5C /* HBMNearbyPeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMNearbyPeopleViewController.m; sourceTree = "<group>"; };
+		659B035618CB56390065DA5C /* HBMConcentricCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMConcentricCircleView.h; sourceTree = "<group>"; };
+		659B035718CB56390065DA5C /* HBMConcentricCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMConcentricCircleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6570A67F18CB6C2600AFC160 /* QuartzCore.framework in Frameworks */,
 				49FBE9FF18CB38A200D7C3B4 /* CoreLocation.framework in Frameworks */,
 				49FBE98A18CB2BCA00D7C3B4 /* CoreGraphics.framework in Frameworks */,
 				49FBE98C18CB2BCA00D7C3B4 /* UIKit.framework in Frameworks */,
@@ -146,6 +161,7 @@
 		49FBE98618CB2BCA00D7C3B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6570A67E18CB6C2600AFC160 /* QuartzCore.framework */,
 				49FBE9FE18CB38A200D7C3B4 /* CoreLocation.framework */,
 				49FBE98718CB2BCA00D7C3B4 /* Foundation.framework */,
 				49FBE98918CB2BCA00D7C3B4 /* CoreGraphics.framework */,
@@ -158,6 +174,8 @@
 		49FBE98D18CB2BCA00D7C3B4 /* Your Spot */ = {
 			isa = PBXGroup;
 			children = (
+				659B035518CB524B0065DA5C /* Views */,
+				659B035018CB4DB00065DA5C /* View Controllers */,
 				49FBE99618CB2BCA00D7C3B4 /* HBMAppDelegate.h */,
 				49FBE99718CB2BCA00D7C3B4 /* HBMAppDelegate.m */,
 				49FBE99918CB2BCA00D7C3B4 /* Images.xcassets */,
@@ -208,6 +226,28 @@
 				49FBE9F918CB34E600D7C3B4 /* HBMConvenience.m */,
 			);
 			name = Conveniences;
+			sourceTree = "<group>";
+		};
+		659B035018CB4DB00065DA5C /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				659B035118CB52320065DA5C /* HBMNearbyPeopleViewController.h */,
+				659B035218CB52320065DA5C /* HBMNearbyPeopleViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		659B035518CB524B0065DA5C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				659B035618CB56390065DA5C /* HBMConcentricCircleView.h */,
+				659B035718CB56390065DA5C /* HBMConcentricCircleView.m */,
+				6570A68018CB840200AFC160 /* HBMNearbyDevicesView.h */,
+				6570A68118CB840200AFC160 /* HBMNearbyDevicesView.m */,
+				6570A67B18CB675100AFC160 /* HBMProfileImageView.h */,
+				6570A67C18CB675100AFC160 /* HBMProfileImageView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,15 +347,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+<<<<<<< HEAD
 				493A5C0218CB5BB400C66094 /* HBMNearbyBeaconTableViewController.m in Sources */,
 				49FBE99818CB2BCA00D7C3B4 /* HBMAppDelegate.m in Sources */,
 				49FBE99418CB2BCA00D7C3B4 /* main.m in Sources */,
 				49141EBA18CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m in Sources */,
 				493A5BFE18CB4C8300C66094 /* HBMChild.m in Sources */,
+=======
+				6570A67D18CB675100AFC160 /* HBMProfileImageView.m in Sources */,
+				49FBE99818CB2BCA00D7C3B4 /* HBMAppDelegate.m in Sources */,
+				49FBE99418CB2BCA00D7C3B4 /* main.m in Sources */,
+				659B035818CB56390065DA5C /* HBMConcentricCircleView.m in Sources */,
+>>>>>>> feature/ui
 				49FBE9F718CB34B000D7C3B4 /* HBMConveniencesController.m in Sources */,
 				493A5BFB18CB49CB00C66094 /* HBMBeaconController.m in Sources */,
 				49141EBD18CB8C67000C6BC3 /* HBMInputCell.m in Sources */,
 				49FBE9FA18CB34E600D7C3B4 /* HBMConvenience.m in Sources */,
+				659B035318CB52320065DA5C /* HBMNearbyPeopleViewController.m in Sources */,
+				6570A68218CB840200AFC160 /* HBMNearbyDevicesView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
