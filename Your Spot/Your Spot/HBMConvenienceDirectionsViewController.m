@@ -124,7 +124,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if(indexPath.section == 0){
-        return 200;
+        if(self.directions){
+            return 200;
+        } else {
+            return 0;
+        }
     } else if(indexPath.section == 1){
         
         NSString *direction = ((MKRouteStep *)self.directions[indexPath.row]).instructions;
@@ -148,9 +152,11 @@
         
         static NSString *imageCell = @"ImageCell";
         HBMImageHeaderCell *headerCell = [tableView dequeueReusableCellWithIdentifier:imageCell forIndexPath:indexPath];
-        headerCell.backgroundImage.image = [UIImage imageNamed:@"toilets"];
-        headerCell.placeNameLabel.text = [self.convenience.convenienceName stringByReplacingOccurrencesOfString:@"PUBLIC CONVENIENCES" withString:@""];
-        headerCell.placeDistanceLabel.text = [NSString stringWithFormat:@"%.0fm", self.route.distance];
+        if(self.directions){
+            headerCell.backgroundImage.image = [UIImage imageNamed:@"toilets"];
+            headerCell.placeNameLabel.text = [self.convenience.convenienceName stringByReplacingOccurrencesOfString:@"PUBLIC CONVENIENCES" withString:@""];
+            headerCell.placeDistanceLabel.text = [NSString stringWithFormat:@"%.0fm", self.route.distance];
+        }
         
         return headerCell;
     }
