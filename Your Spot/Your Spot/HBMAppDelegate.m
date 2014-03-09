@@ -20,7 +20,7 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
-    self.window.rootViewController = [HBMNearbyPeopleViewController new];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[HBMNearbyPeopleViewController new]];
     
     [self.window makeKeyAndVisible];
     

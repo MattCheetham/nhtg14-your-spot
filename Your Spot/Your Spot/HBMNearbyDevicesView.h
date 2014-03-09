@@ -13,5 +13,6 @@
 @interface HBMNearbyDevicesView : HBMConcentricCircleView
 
 - (void)addProfileView:(HBMProfileImageView *)profileView withTier:(NSUInteger)tier;
+- (void)clearAll;
 
 @end

@@ -136,7 +136,9 @@ static HBMBeaconController *sharedController = nil;
                     if(monitoredChild.currentProximity != nearbyBeacon.proximity){
                         
                         NSLog(@"Updating %@'s proximity from %@ to %@", monitoredChild.childName, [self stringFromProximity:monitoredChild.currentProximity], [self stringFromProximity:nearbyBeacon.proximity]);
+                        [self willChangeValueForKey:@"monitoredChildren"];
                         monitoredChild.currentProximity = nearbyBeacon.proximity;
+                        [self didChangeValueForKey:@"monitoredChildren"];
                         
                     }
                     

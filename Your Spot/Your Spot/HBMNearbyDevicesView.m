@@ -78,4 +78,14 @@ NSInteger radiansFromDegrees(NSInteger degrees)
     return [self profileViewsForTier:tier].count;
 }
 
+- (void)clearAll
+{
+    for (UIView *view in self.subviews)
+    {
+        [view removeFromSuperview];
+    }
+    
+    self.profileViews = @[].mutableCopy;
+}
+
 @end
