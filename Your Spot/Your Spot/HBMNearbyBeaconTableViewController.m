@@ -261,7 +261,7 @@
         UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [headerView.contentView addSubview:indicatorView];
         
-        indicatorView.frame = CGRectMake(225, 12, indicatorView.frame.size.width, indicatorView.frame.size.height);
+        indicatorView.frame = CGRectMake(230, 12, indicatorView.frame.size.width, indicatorView.frame.size.height);
         [indicatorView startAnimating];
         
         return headerView;
