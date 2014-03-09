@@ -35,7 +35,7 @@
         
         self.title = @"Add Child";
         
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:nil action:nil];
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelAdding)];
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(finishAdding)];
         
         self.beaconController = [HBMBeaconController sharedController];
@@ -48,6 +48,11 @@
         
     }
     return self;
+}
+
+- (void)cancelAdding
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)finishAdding
