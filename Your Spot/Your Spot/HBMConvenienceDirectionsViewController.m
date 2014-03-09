@@ -50,7 +50,7 @@
                 MKPlacemark *newPlacemark = [[MKPlacemark alloc] initWithCoordinate:foundPlacemark.location.coordinate addressDictionary:foundPlacemark.addressDictionary];
                 MKMapItem *source = [[MKMapItem alloc] initWithPlacemark:newPlacemark];
                 
-                [geocoder reverseGeocodeLocation:((HBMConvenience *)conveniences[1]).convenienceLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+                [geocoder geocodeAddressString:((HBMConvenience *)conveniences[0]).convenienceAddress completionHandler:^(NSArray *placemarks, NSError *error) {
                     
                     CLPlacemark *foundPlacemark = placemarks[0];
                     MKPlacemark *newPlacemark = [[MKPlacemark alloc] initWithCoordinate:foundPlacemark.location.coordinate addressDictionary:foundPlacemark.addressDictionary];
@@ -65,8 +65,13 @@
                     MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
                     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
                         
+                        MKRoute *chosenRoute = response.routes[0];
+                        
+                        self.directions = chosenRoute.steps;
                         NSLog(@"I have directions:%@", response);
                         NSLog(@"Error:%@", error);
+                        
+                        [self.tableView reloadData];
                         
                     }];
                     
@@ -74,7 +79,6 @@
                 
             }];
 
-            
         }];
         
     }];
@@ -107,6 +111,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    cell.textLabel.text = ((MKRouteStep *)self.directions[indexPath.row]).instructions;
     
     return cell;
 }
