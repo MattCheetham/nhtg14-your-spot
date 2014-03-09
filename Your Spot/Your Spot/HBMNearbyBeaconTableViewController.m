@@ -38,6 +38,7 @@
         
         [self.beaconController addObserver:self forKeyPath:@"nearbyBeacons" options:kNilOptions context:nil];
         
+        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"standardCell"];
         [self.tableView registerClass:[HBMAvailableBeaconCell class] forCellReuseIdentifier:@"Cell"];
         [self.tableView registerClass:[HBMInputCell class] forCellReuseIdentifier:@"inputCell"];
         
@@ -99,20 +100,27 @@
 {
     if (indexPath.section == 0){
         
-        static NSString *inputCellIdentifier = @"inputCell";
-        HBMInputCell *inputCell = [tableView dequeueReusableCellWithIdentifier:inputCellIdentifier forIndexPath:indexPath];
-        
         if(indexPath.row == 0){
+
+            static NSString *inputCellIdentifier = @"inputCell";
+            HBMInputCell *inputCell = [tableView dequeueReusableCellWithIdentifier:inputCellIdentifier forIndexPath:indexPath];
             
             inputCell.textLabel.text = @"Name";
             
+            return inputCell;
+
+            
         } else if(indexPath.row == 1){
             
-            inputCell.textLabel.text = @"Upload Image";
+            static NSString *standardCellIdentifier = @"standardCell";
+            UITableViewCell *standardCell = [tableView dequeueReusableCellWithIdentifier:standardCellIdentifier forIndexPath:indexPath];
+            
+            standardCell.textLabel.text = @"Upload Image";
+            
+            return standardCell;
             
         }
         
-        return inputCell;
     
     } else if(indexPath.section == 1){
         
