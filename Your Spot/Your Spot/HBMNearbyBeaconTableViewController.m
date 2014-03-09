@@ -11,9 +11,11 @@
 #import "HBMAvailableBeaconCell.h"
 #import "HBMInputCell.h"
 
-@interface HBMNearbyBeaconTableViewController ()
+@interface HBMNearbyBeaconTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, strong) HBMBeaconController *beaconController;
+@property (nonatomic, strong) UIImage *childImage;
+@property (nonatomic, strong) UITextField *childNameField;
 
 @end
 
@@ -107,6 +109,8 @@
             
             inputCell.textLabel.text = @"Name";
             
+            self.childNameField = inputCell.textField;
+
             return inputCell;
 
             
@@ -115,7 +119,12 @@
             static NSString *standardCellIdentifier = @"standardCell";
             UITableViewCell *standardCell = [tableView dequeueReusableCellWithIdentifier:standardCellIdentifier forIndexPath:indexPath];
             
-            standardCell.textLabel.text = @"Upload Image";
+            if(self.childImage){
+                standardCell.textLabel.text = @"Change image";
+            } else {
+                standardCell.textLabel.text = @"Select Image";
+            }
+            standardCell.imageView.image = self.childImage;
             
             return standardCell;
             
@@ -143,12 +152,78 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if(indexPath.section == 0){
+        
+        if(indexPath.row == 1){
+            
+         
+            if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                [self pickPhotoFromLibrary];
+                return;
+            }
+            
+            UIActionSheet *imagePickerSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take Photo", @"Library", nil];
+            imagePickerSheet.tag = 3;
+            [imagePickerSheet showInView:self.view];
+            
+            
+        }
+        
+    }
+    
     if(indexPath.section == 1){
         CLBeacon *selectedBeacon = self.beaconController.nearbyBeacons[indexPath.row];
         UIAlertView *selectedBeaconAlert = [[UIAlertView alloc] initWithTitle:@"Add child?" message:[NSString stringWithFormat:@"Do you want to start monitoring this child?\n\n%@-%@", selectedBeacon.major, selectedBeacon.minor] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Accept", nil];
         selectedBeaconAlert.tag = indexPath.row;
         [selectedBeaconAlert show];
     }
+}
+
+#pragma mark - Action sheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(actionSheet.tag == 3){
+        
+        if(buttonIndex == 0){
+            
+            [self takePhotoForImage];
+            
+        } else if (buttonIndex == 1){
+            
+            [self pickPhotoFromLibrary];
+        }
+        
+    }
+}
+
+#pragma mark Image Picker
+
+- (void)pickPhotoFromLibrary
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = YES;
+    
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+- (void)takePhotoForImage
+{
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = YES;
+    
+    [self presentViewController:imagePickerController animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    self.childImage = [info objectForKey:UIImagePickerControllerEditedImage];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
 }
 
 #pragma mark - Alert View options
