@@ -13,7 +13,7 @@
 #import "HBMBeaconController.h"
 #import "HBMChild.h"
 #import "HBMNearbyBeaconTableViewController.h"
-
+#import "HBMConvenienceDirectionsViewController.h"
 
 @interface HBMNearbyPeopleViewController ()
 @property (nonatomic, weak) HBMNearbyDevicesView *nearbyDevicesView;
@@ -52,9 +52,18 @@
                                                                                    action:@selector(showBeaconThing)];
         
         self.navigationItem.rightBarButtonItem = addBeacon;
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Convenience" style:UIBarButtonItemStylePlain target:self action:@selector(goToConvenience)];
     }
     
     return self;
+}
+
+
+- (void)goToConvenience
+{
+    HBMConvenienceDirectionsViewController *directionsView = [[HBMConvenienceDirectionsViewController alloc] initWithConvenience:nil];
+    [self.navigationController pushViewController:directionsView animated:YES];
 }
 
 - (void)showBeaconThing

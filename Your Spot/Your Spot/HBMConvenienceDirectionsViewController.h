@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class HBMConvenience;
+
 @interface HBMConvenienceDirectionsViewController : UITableViewController
+
+- (id)initWithConvenience:(HBMConvenience *)convenience;
 
 @end

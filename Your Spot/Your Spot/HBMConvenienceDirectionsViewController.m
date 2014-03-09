@@ -8,6 +8,9 @@
 
 #import "HBMConvenienceDirectionsViewController.h"
 #import "HBMConveniencesController.h"
+#import "PCSingleRequestLocationManager.h"
+#import "HBMConvenience.h"
+#import <MapKit/MapKit.h>
 
 @interface HBMConvenienceDirectionsViewController ()
 
@@ -18,7 +21,7 @@
 
 @implementation HBMConvenienceDirectionsViewController
 
-- (id)init
+- (id)initWithConvenience:(HBMConvenience *)convenience
 {
     self = [super initWithStyle:UITableViewStyleGrouped];
     if (self) {
@@ -33,6 +36,48 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    PCSingleRequestLocationManager *manager = [PCSingleRequestLocationManager new];
+    [manager requestCurrentLocationWithCompletion:^(CLLocation *location, NSError *error) {
+        
+        CLGeocoder *geocoder = [CLGeocoder new];
+        
+        [self.conveniencesController nearestConveniencesWithLocation:location completion:^(NSArray *conveniences, NSError *error) {
+            
+            [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
+                
+                CLPlacemark *foundPlacemark = placemarks[0];
+                MKPlacemark *newPlacemark = [[MKPlacemark alloc] initWithCoordinate:foundPlacemark.location.coordinate addressDictionary:foundPlacemark.addressDictionary];
+                MKMapItem *source = [[MKMapItem alloc] initWithPlacemark:newPlacemark];
+                
+                [geocoder reverseGeocodeLocation:((HBMConvenience *)conveniences[1]).convenienceLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+                    
+                    CLPlacemark *foundPlacemark = placemarks[0];
+                    MKPlacemark *newPlacemark = [[MKPlacemark alloc] initWithCoordinate:foundPlacemark.location.coordinate addressDictionary:foundPlacemark.addressDictionary];
+                    MKMapItem *destination = [[MKMapItem alloc] initWithPlacemark:newPlacemark];
+
+                    MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc] init];
+                    directionsRequest.source = source;
+                    directionsRequest.destination = destination;
+                    directionsRequest.requestsAlternateRoutes = NO;
+                    directionsRequest.transportType = MKDirectionsTransportTypeWalking;
+                    
+                    MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
+                    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+                        
+                        NSLog(@"I have directions:%@", response);
+                        NSLog(@"Error:%@", error);
+                        
+                    }];
+                    
+                }];
+                
+            }];
+
+            
+        }];
+        
+    }];
 
 }
 
