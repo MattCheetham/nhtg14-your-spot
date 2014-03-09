@@ -143,10 +143,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CLBeacon *selectedBeacon = self.beaconController.nearbyBeacons[indexPath.row];
-    UIAlertView *selectedBeaconAlert = [[UIAlertView alloc] initWithTitle:@"Add child?" message:[NSString stringWithFormat:@"Do you want to start monitoring this child?\n\n%@-%@", selectedBeacon.major, selectedBeacon.minor] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Accept", nil];
-    selectedBeaconAlert.tag = indexPath.row;
-    [selectedBeaconAlert show];
+    if(indexPath.section == 1){
+        CLBeacon *selectedBeacon = self.beaconController.nearbyBeacons[indexPath.row];
+        UIAlertView *selectedBeaconAlert = [[UIAlertView alloc] initWithTitle:@"Add child?" message:[NSString stringWithFormat:@"Do you want to start monitoring this child?\n\n%@-%@", selectedBeacon.major, selectedBeacon.minor] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Accept", nil];
+        selectedBeaconAlert.tag = indexPath.row;
+        [selectedBeaconAlert show];
+    }
 }
 
 #pragma mark - Alert View options
