@@ -15,7 +15,9 @@
 @interface HBMConvenienceDirectionsViewController ()
 
 @property (nonatomic, strong) HBMConveniencesController *conveniencesController;
+@property (nonatomic, strong) MKRoute *route;
 @property (nonatomic, strong) NSArray *directions;
+@property (nonatomic, strong) HBMConvenience *convenience;
 
 @end
 
@@ -44,6 +46,8 @@
         
         [self.conveniencesController nearestConveniencesWithLocation:location completion:^(NSArray *conveniences, NSError *error) {
             
+            self.convenience = conveniences[0];
+            
             [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error) {
                 
                 CLPlacemark *foundPlacemark = placemarks[0];
@@ -65,9 +69,9 @@
                     MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
                     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
                         
-                        MKRoute *chosenRoute = response.routes[0];
+                        self.route = response.routes[0];
                         
-                        self.directions = chosenRoute.steps;
+                        self.directions = self.route.steps;
                         NSLog(@"I have directions:%@", response);
                         NSLog(@"Error:%@", error);
                         
@@ -93,6 +97,15 @@
 
 #pragma mark - Table view data source
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(self.route){
+        return [NSString stringWithFormat:@"%@ - %.0fm away", self.convenience.convenienceName, self.route.distance];
+    }
+    
+    return nil;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -112,8 +125,21 @@
     
     // Configure the cell...
     cell.textLabel.text = ((MKRouteStep *)self.directions[indexPath.row]).instructions;
-    
+    cell.textLabel.numberOfLines = 0;
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NSString *direction = ((MKRouteStep *)self.directions[indexPath.row]).instructions;
+    
+    CGSize constraint = CGSizeMake(290, MAXFLOAT);
+    
+    CGSize size = [direction sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+    
+    CGFloat height = MAX(size.height + 11, 44.0f);
+    
+    return height;
 }
 
 @end
