@@ -16,6 +16,7 @@
 @property (nonatomic, strong) HBMBeaconController *beaconController;
 @property (nonatomic, strong) UIImage *childImage;
 @property (nonatomic, strong) UITextField *childNameField;
+@property (nonatomic, strong) CLBeacon *selectedBeacon;
 
 @end
 
@@ -139,7 +140,13 @@
         CLBeacon *nearbyBeacon = self.beaconController.nearbyBeacons[indexPath.row];
         cell.textLabel.text = [self.beaconController commonIdentifierForBeacon:nearbyBeacon];
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@-%@", nearbyBeacon.major, nearbyBeacon.minor, [self.beaconController stringFromProximity:nearbyBeacon.proximity]];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        if([self.selectedBeacon.minor isEqualToNumber:nearbyBeacon.minor] && [self.selectedBeacon.major isEqualToNumber:nearbyBeacon.major]){
+            
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            
+        }
         
         return cell;
     }
@@ -176,6 +183,8 @@
         UIAlertView *selectedBeaconAlert = [[UIAlertView alloc] initWithTitle:@"Add child?" message:[NSString stringWithFormat:@"Do you want to start monitoring this child?\n\n%@-%@", selectedBeacon.major, selectedBeacon.minor] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Accept", nil];
         selectedBeaconAlert.tag = indexPath.row;
         [selectedBeaconAlert show];
+        
+        self.selectedBeacon = selectedBeacon;
     }
 }
 
@@ -232,7 +241,12 @@
 {
     if(buttonIndex == 1){
         
+        NSLog(@"Accepted");
         
+    } else {
+        
+        NSLog(@"Rejected");
+        self.selectedBeacon = nil;
         
     }
 }
