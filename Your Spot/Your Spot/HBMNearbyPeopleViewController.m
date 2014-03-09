@@ -120,6 +120,7 @@ NSInteger tierForProximity(CLProximity proximity)
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background"]];
 }
 
 - (void)didReceiveMemoryWarning
