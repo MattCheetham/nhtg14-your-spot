@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		49141EBA18CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49141EB918CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m */; };
 		49141EBD18CB8C67000C6BC3 /* HBMInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49141EBC18CB8C67000C6BC3 /* HBMInputCell.m */; };
+		4924EA0518CC8D6B0022B3BD /* range.caf in Resources */ = {isa = PBXBuildFile; fileRef = 4924EA0418CC8D6B0022B3BD /* range.caf */; };
 		493A5BFB18CB49CB00C66094 /* HBMBeaconController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */; };
 		493A5BFE18CB4C8300C66094 /* HBMChild.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5BFD18CB4C8300C66094 /* HBMChild.m */; };
 		493A5C0218CB5BB400C66094 /* HBMNearbyBeaconTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493A5C0118CB5BB400C66094 /* HBMNearbyBeaconTableViewController.m */; };
@@ -45,6 +46,7 @@
 		49141EB918CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMAvailableBeaconCell.m; sourceTree = "<group>"; };
 		49141EBB18CB8C67000C6BC3 /* HBMInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMInputCell.h; sourceTree = "<group>"; };
 		49141EBC18CB8C67000C6BC3 /* HBMInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMInputCell.m; sourceTree = "<group>"; };
+		4924EA0418CC8D6B0022B3BD /* range.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = range.caf; sourceTree = "<group>"; };
 		493A5BF918CB49CB00C66094 /* HBMBeaconController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMBeaconController.h; sourceTree = "<group>"; };
 		493A5BFA18CB49CB00C66094 /* HBMBeaconController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBMBeaconController.m; sourceTree = "<group>"; };
 		493A5BFC18CB4C8300C66094 /* HBMChild.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBMChild.h; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				49141EB918CB7B3E000C6BC3 /* HBMAvailableBeaconCell.m */,
 				49141EBB18CB8C67000C6BC3 /* HBMInputCell.h */,
 				49141EBC18CB8C67000C6BC3 /* HBMInputCell.m */,
+				4924EA0418CC8D6B0022B3BD /* range.caf */,
 			);
 			name = Beacons;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			files = (
 				49FBE99218CB2BCA00D7C3B4 /* InfoPlist.strings in Resources */,
 				49FBE9FD18CB367A00D7C3B4 /* conveniences.json in Resources */,
+				4924EA0518CC8D6B0022B3BD /* range.caf in Resources */,
 				49FBE99A18CB2BCA00D7C3B4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -65,6 +65,7 @@
     CLBeaconMinorValue minor = [self.selectedBeacon.minor intValue];
     
     newChild.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:self.selectedBeacon.proximityUUID major:major minor:minor identifier:self.childNameField.text];
+    newChild.beaconRegion.notifyEntryStateOnDisplay = YES;
     newChild.childName = self.childNameField.text;
     newChild.childImage = self.childImage;
     
@@ -72,7 +73,7 @@
     
     [self.beaconController startMonitoringChildren];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
