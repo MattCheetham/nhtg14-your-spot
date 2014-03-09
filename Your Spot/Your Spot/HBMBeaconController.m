@@ -199,18 +199,11 @@ static HBMBeaconController *sharedController = nil;
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    NSLog(@"Found them!");
-    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
-    localNotif.alertBody = @"Found them!";
-    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
+
 }
 
 - (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    NSLog(@"Lost them!");
-    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
-    localNotif.alertBody = @"Lost them!";
-    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
 
 }
 
