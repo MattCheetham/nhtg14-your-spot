@@ -95,6 +95,7 @@ static HBMBeaconController *sharedController = nil;
 {
     for (HBMChild *child in self.monitoredChildren){
         
+        [self.locationManager startMonitoringForRegion:child.beaconRegion];
         [self.locationManager startRangingBeaconsInRegion:child.beaconRegion];
         
     }
@@ -139,6 +140,14 @@ static HBMBeaconController *sharedController = nil;
                         [self willChangeValueForKey:@"monitoredChildren"];
                         monitoredChild.currentProximity = nearbyBeacon.proximity;
                         [self didChangeValueForKey:@"monitoredChildren"];
+                        
+                        if(nearbyBeacon.proximity == CLProximityUnknown){
+                            
+                            UILocalNotification *farAwayNotif = [UILocalNotification new];
+                            farAwayNotif.alertBody = [NSString stringWithFormat:@"WARNING: %@ is going out of range", monitoredChild.childName];
+                            farAwayNotif.soundName = @"range.caf";
+                            [[UIApplication sharedApplication] presentLocalNotificationNow:farAwayNotif];
+                        }
                         
                     }
                     
