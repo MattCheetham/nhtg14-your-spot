@@ -12,6 +12,8 @@
 @interface HBMBeaconController () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, strong) NSMutableArray *monitoredRegions;
+@property (nonatomic) BOOL isScanningForAllBeacons;
 
 @end
 
@@ -38,16 +40,46 @@ static HBMBeaconController *sharedController = nil;
         self.locationManager.delegate = self;
         self.monitoredChildren = [NSMutableArray array];
         self.monitoredFriends = [NSMutableArray array];
-        
-        [self.monitoredChildren addObject:[[HBMChild alloc] init]];
-        
-        [self startMonitoringChildren];
-        
+        self.nearbyBeacons = [NSMutableArray array];
+        self.monitoredRegions = [NSMutableArray array];
+        self.nearbyBeaconDictionary = [NSMutableDictionary dictionary];
+                        
     }
     return self;
 }
 
+#pragma mark - Add/Remove monitored people
+
+- (void)addMonitoredChild:(HBMChild *)child
+{
+    [self.monitoredChildren addObject:child];
+}
+
 #pragma mark - Handle start/stop of monitoring
+
+- (void)startLookingForNearbyBeacons
+{
+    self.isScanningForAllBeacons = YES;
+    //List of beacon brands we need to look for, and our own
+    CLBeaconRegion *estimoteRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"] identifier:@"Estimote"];
+    CLBeaconRegion *appRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:kYourSpotUUUID] identifier:@"Your Spot User"];
+    
+    [self.monitoredRegions addObjectsFromArray:@[estimoteRegion, appRegion]];
+    
+    for (CLBeaconRegion *region in self.monitoredRegions){
+        [self.locationManager startRangingBeaconsInRegion:region];
+    }
+}
+
+- (void)stopLookingForNearbyBeacons
+{
+    for (CLBeaconRegion *monitoredRegion in self.monitoredRegions){
+        
+        [self.locationManager stopRangingBeaconsInRegion:monitoredRegion];
+        
+    }
+    self.isScanningForAllBeacons = NO;
+}
 
 - (void)startMonitoringFriends
 {
@@ -63,7 +95,6 @@ static HBMBeaconController *sharedController = nil;
 {
     for (HBMChild *child in self.monitoredChildren){
         
-        [self.locationManager startMonitoringForRegion:child.beaconRegion];
         [self.locationManager startRangingBeaconsInRegion:child.beaconRegion];
         
     }
@@ -71,22 +102,115 @@ static HBMBeaconController *sharedController = nil;
 
 - (void)stopMonitoringChildren
 {
-    
+    for (HBMChild *child in self.monitoredChildren){
+        
+        [self.locationManager stopRangingBeaconsInRegion:child.beaconRegion];
+        
+    }
 }
 
-#pragma mark - Region handling
+#pragma mark - Region Range handling
 - (void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region
 {
-    CLBeacon *firstBeacon = [beacons firstObject];
-    NSLog(@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]);
+    
+    if(self.isScanningForAllBeacons){
+        [self.nearbyBeaconDictionary setObject:beacons forKey:region.identifier];
+        
+        [self.nearbyBeacons removeAllObjects];
+
+        [self willChangeValueForKey:@"nearbyBeacons"];
+        for (NSString *key in [self.nearbyBeaconDictionary allKeys]){
+            
+            [self.nearbyBeacons addObjectsFromArray:self.nearbyBeaconDictionary[key]];
+            
+        }
+        [self didChangeValueForKey:@"nearbyBeacons"];
+    } else {
+    
+        for(CLBeacon *nearbyBeacon in beacons){
+            
+            for(HBMChild *monitoredChild in self.monitoredChildren){
+                
+                if([nearbyBeacon.minor isEqualToNumber:monitoredChild.beaconRegion.minor] && [nearbyBeacon.major isEqualToNumber:monitoredChild.beaconRegion.major] && [nearbyBeacon.proximityUUID.UUIDString isEqualToString:monitoredChild.beaconRegion.proximityUUID.UUIDString]){
+                    
+                    if(monitoredChild.currentProximity != nearbyBeacon.proximity){
+                        
+                        NSLog(@"Updating %@'s proximity from %@ to %@", monitoredChild.childName, [self stringFromProximity:monitoredChild.currentProximity], [self stringFromProximity:nearbyBeacon.proximity]);
+                        monitoredChild.currentProximity = nearbyBeacon.proximity;
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+    
+    }
+
+//    CLBeacon *firstBeacon = [beacons firstObject];
+//    NSLog(@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]);
+//    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+//    localNotif.alertBody = [NSString stringWithFormat:@"Updated with range:%@", [self stringFromProximity:firstBeacon.proximity]];
+//    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
 }
 
 - (void)locationManager:(CLLocationManager *)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error
 {
     NSLog(@"Failed to range");
 }
-          
-#pragma mark - Proximity convneience methods
+
+- (void)locationManager:(CLLocationManager *)manager didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region{
+    
+    if (state == CLRegionStateInside) {
+        
+        NSLog(@"Inside");
+    }
+    
+    else{
+        
+        NSLog(@"Outside");
+        
+    }
+    
+}
+
+#pragma mark - Region Enter/Exit
+
+- (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
+{
+    NSLog(@"Found them!");
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    localNotif.alertBody = @"Found them!";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
+{
+    NSLog(@"Lost them!");
+    UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+    localNotif.alertBody = @"Lost them!";
+    [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
+
+}
+
+#pragma mark - Monitoring convneience methods
+
+- (NSString *)commonIdentifierForBeacon:(CLBeacon *)beacon
+{
+    for (CLBeaconRegion *existingBeacon in self.monitoredRegions){
+        
+        if([existingBeacon.proximityUUID.UUIDString isEqualToString:beacon.proximityUUID.UUIDString]){
+            
+            return existingBeacon.identifier;
+            break;
+            
+        }
+        
+    }
+
+    return @"Unknown";
+}
 
 - (NSString *)stringFromProximity:(CLProximity)proximity
 {
