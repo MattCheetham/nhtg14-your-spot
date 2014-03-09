@@ -11,6 +11,7 @@
 #import "PCSingleRequestLocationManager.h"
 #import "HBMConvenience.h"
 #import <MapKit/MapKit.h>
+#import "HBMImageHeaderCell.h"
 
 @interface HBMConvenienceDirectionsViewController ()
 
@@ -29,6 +30,7 @@
     if (self) {
 
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Cell"];
+        [self.tableView registerClass:[HBMImageHeaderCell class] forCellReuseIdentifier:@"ImageCell"];
         self.conveniencesController = [HBMConveniencesController sharedController];
         
     }
@@ -97,49 +99,73 @@
 
 #pragma mark - Table view data source
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    if(self.route){
-        return [NSString stringWithFormat:@"%@ - %.0fm away", self.convenience.convenienceName, self.route.distance];
-    }
-    
-    return nil;
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.directions.count;
+    switch (section) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return self.directions.count;
+            
+        default:
+            return 0;
+            break;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(indexPath.section == 0){
+        return 200;
+    } else if(indexPath.section == 1){
+        
+        NSString *direction = ((MKRouteStep *)self.directions[indexPath.row]).instructions;
+        
+        CGSize constraint = CGSizeMake(290, MAXFLOAT);
+        
+        CGSize size = [direction sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+        
+        CGFloat height = MAX(size.height + 11, 44.0f);
+        
+        return height;
+    }
+    
+    return UITableViewAutomaticDimension;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if(indexPath.section == 0){
+        
+        static NSString *imageCell = @"ImageCell";
+        HBMImageHeaderCell *headerCell = [tableView dequeueReusableCellWithIdentifier:imageCell forIndexPath:indexPath];
+        headerCell.backgroundImage.image = [UIImage imageNamed:@"toilets"];
+        headerCell.placeNameLabel.text = [self.convenience.convenienceName stringByReplacingOccurrencesOfString:@"PUBLIC CONVENIENCES" withString:@""];
+        headerCell.placeDistanceLabel.text = [NSString stringWithFormat:@"%.0fm", self.route.distance];
+        
+        return headerCell;
+    }
     
-    // Configure the cell...
-    cell.textLabel.text = ((MKRouteStep *)self.directions[indexPath.row]).instructions;
-    cell.textLabel.numberOfLines = 0;
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath;
-{
-    NSString *direction = ((MKRouteStep *)self.directions[indexPath.row]).instructions;
+    if(indexPath.section == 1){
+        static NSString *CellIdentifier = @"Cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+        // Configure the cell...
+        cell.textLabel.text = ((MKRouteStep *)self.directions[indexPath.row]).instructions;
+        cell.textLabel.numberOfLines = 0;
+        return cell;
+    }
     
-    CGSize constraint = CGSizeMake(290, MAXFLOAT);
-    
-    CGSize size = [direction sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
-    
-    CGFloat height = MAX(size.height + 11, 44.0f);
-    
-    return height;
+    return nil;
 }
 
 @end
