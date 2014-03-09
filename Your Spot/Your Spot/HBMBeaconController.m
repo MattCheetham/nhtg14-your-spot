@@ -43,7 +43,13 @@ static HBMBeaconController *sharedController = nil;
         self.nearbyBeacons = [NSMutableArray array];
         self.monitoredRegions = [NSMutableArray array];
         self.nearbyBeaconDictionary = [NSMutableDictionary dictionary];
-                        
+        
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:CHILD_RECORDS_KEY]) {
+            self.monitoredChildren = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:CHILD_RECORDS_KEY]];
+        } else {
+            self.monitoredChildren = [NSMutableArray array];
+        }
+        
     }
     return self;
 }
@@ -53,6 +59,9 @@ static HBMBeaconController *sharedController = nil;
 - (void)addMonitoredChild:(HBMChild *)child
 {
     [self.monitoredChildren addObject:child];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:self.monitoredChildren] forKey:CHILD_RECORDS_KEY];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Handle start/stop of monitoring
