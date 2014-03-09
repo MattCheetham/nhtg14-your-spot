@@ -10,6 +10,7 @@
 #import "HBMBeaconController.h"
 #import "HBMAvailableBeaconCell.h"
 #import "HBMInputCell.h"
+#import "HBMChild.h"
 
 @interface HBMNearbyBeaconTableViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -52,7 +53,20 @@
 - (void)finishAdding
 {
     [self.beaconController stopLookingForNearbyBeacons];
+    
+    HBMChild *newChild = [HBMChild new];
+    
+    CLBeaconMajorValue major = [self.selectedBeacon.major intValue];
+    CLBeaconMinorValue minor = [self.selectedBeacon.minor intValue];
+    
+    newChild.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:self.selectedBeacon.proximityUUID major:major minor:minor identifier:self.childNameField.text];
+    newChild.childName = self.childNameField.text;
+    
+    [self.beaconController addMonitoredChild:newChild];
+    
     [self.beaconController startMonitoringChildren];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
