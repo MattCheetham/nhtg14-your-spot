@@ -22,4 +22,24 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super init]) {
+        
+        self.childName = [decoder decodeObjectForKey:@"HBMChildName"];
+        self.childImage = [decoder decodeObjectForKey:@"HBMChildImage"];
+        self.beaconRegion = [decoder decodeObjectForKey:@"HBMBeaconRegion"];
+
+    }
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:self.childName forKey:@"HBMChildName"];
+    [coder encodeObject:self.childImage forKey:@"HBMChildImage"];
+    [coder encodeObject:self.beaconRegion forKey:@"HBMBeaconRegion"];
+}
+
 @end
